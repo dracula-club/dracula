@@ -442,11 +442,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuBtn = document.getElementById('menu');
   const nav = document.getElementById('nav');
   if (menuBtn && nav) {
-    menuBtn.addEventListener('click', () => {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       nav.classList.toggle('open');
     });
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => nav.classList.remove('open'));
+    });
+    document.addEventListener('click', (e) => {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !menuBtn.contains(e.target)) {
+        nav.classList.remove('open');
+      }
     });
   }
 

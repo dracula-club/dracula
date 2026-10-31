@@ -65,6 +65,7 @@ html {
   font-size: 16px;
   background-color: var(--drac-black);
   color-scheme: dark;
+  overflow-x: hidden;
 }
 
 body {
@@ -1706,7 +1707,7 @@ img {
 /* Secondary Production Grid */
 .prod-secondary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 24px;
 }
 
@@ -3464,116 +3465,62 @@ img {
    ======================================================== */
 @media (max-width: 1200px) {
   .topbar {
-    padding: 16px 36px;
+    padding: 14px 28px;
+  }
+  .nav {
+    gap: 16px;
+  }
+  .nav a {
+    font-size: 13px;
+  }
+  .nav a.join-pill {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+  .topbar-sound-btn,
+  .replay-btn {
+    padding: 6px 12px;
+    font-size: 11px;
   }
   .hero-copy {
-    padding: 70px 36px;
+    padding: 64px 32px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 4.6vw, 56px);
   }
   .team-executive-grid {
     gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
   }
   .gallery-theatre-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
   .royal-about-split {
     grid-template-columns: 1fr 1.15fr;
-    gap: 32px;
+    gap: 28px;
+  }
+  .footer-main {
+    grid-template-columns: 1.3fr 1fr 1fr 1.1fr;
+    gap: 24px;
   }
 }
 
 /* --- Medium Tablets & Small Laptops (<= 992px) --- */
 @media (max-width: 992px) {
   .topbar {
-    padding: 14px 24px;
-  }
-  .royal-about-showcase {
-    padding: 64px 20px;
-  }
-  .royal-about-split {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .royal-wings-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .hero-copy {
-    padding: 56px 20px;
-  }
-  .about-inner {
-    grid-template-columns: 1fr;
-  }
-  .about-editorial {
-    padding: 48px 20px;
-    border-right: none;
-    border-bottom: 1px solid var(--drac-line);
-  }
-  .about-craft-panel {
-    padding: 48px 20px;
-  }
-  .featured-prod-hero {
-    grid-template-columns: 1fr;
-  }
-  .featured-prod-img-wrap {
-    height: 300px;
-    width: 100%;
-  }
-  .featured-prod-content {
-    border-left: none;
-    border-top: 1px solid var(--drac-line);
-    padding: 32px 24px;
-  }
-  .team-executive-grid {
-    grid-template-columns: 1fr;
-    max-width: 540px;
-    margin: 0 auto;
-  }
-  /* ENSEMBLE BANNER SCALING: STACK ON TABLET/MOBILE (Zero squishing) */
-  .team-ensemble-banner {
-    grid-template-columns: 1fr !important;
-    margin-top: 36px;
-  }
-  .team-ensemble-img-wrap {
-    height: clamp(260px, 45vw, 380px);
-    min-height: 240px;
-    width: 100%;
-  }
-  .team-ensemble-img-wrap img {
-    object-position: center 25%;
-  }
-  .team-ensemble-content {
-    padding: 32px 24px;
-  }
-  .gallery-theatre-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .join-pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footer-main {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 36px;
-  }
-}
-
-/* --- Tablets Portrait & Mobile Handsets (<= 768px) --- */
-@media (max-width: 768px) {
-  .site-wrapper {
-    width: 100%;
-    overflow-x: hidden;
-  }
-  .topbar {
-    padding: 12px 18px;
+    padding: 12px 20px;
   }
   .brand-logo-img {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
   .brand span {
-    font-size: 17px;
+    font-size: 18px;
   }
   .brand span small {
-    font-size: 8px;
+    font-size: 8.5px;
     letter-spacing: 1.5px;
   }
   .menu {
@@ -3581,10 +3528,10 @@ img {
     font-size: 26px;
     padding: 4px 8px;
   }
-  /* Mobile Sliding Nav Drawer */
+  /* Mobile Sliding Nav Drawer (Clean on all tablets & mobile) */
   .nav {
     position: fixed;
-    top: 64px;
+    top: 62px;
     left: 0;
     right: 0;
     background: rgba(13, 9, 16, 0.98);
@@ -3598,7 +3545,7 @@ img {
     transform: translateY(-120%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 999;
-    max-height: calc(100vh - 66px);
+    max-height: calc(100vh - 64px);
     overflow-y: auto;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.95);
   }
@@ -3628,37 +3575,136 @@ img {
     align-self: flex-start;
     margin-top: 4px;
   }
+
+  .royal-about-showcase {
+    padding: 56px 20px;
+  }
+  .royal-about-split {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .royal-wings-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .hero-copy {
+    padding: 52px 20px;
+  }
+  .about-inner {
+    grid-template-columns: 1fr;
+  }
+  .about-editorial {
+    padding: 44px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--drac-line);
+  }
+  .about-craft-panel {
+    padding: 44px 20px;
+  }
+  .featured-prod-hero {
+    grid-template-columns: 1fr !important;
+  }
+  .featured-prod-img-wrap {
+    height: 280px;
+    width: 100%;
+  }
+  .featured-prod-content {
+    border-left: none;
+    border-top: 1px solid var(--drac-line);
+    padding: 28px 20px;
+  }
+  .team-executive-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+  /* ENSEMBLE BANNER SCALING: STACK ON TABLET/MOBILE (Zero squishing) */
+  .team-ensemble-banner {
+    grid-template-columns: 1fr !important;
+    margin-top: 36px;
+  }
+  .team-ensemble-img-wrap {
+    height: clamp(260px, 45vw, 360px);
+    min-height: 240px;
+    width: 100%;
+  }
+  .team-ensemble-img-wrap img {
+    object-position: center 25%;
+  }
+  .team-ensemble-content {
+    padding: 28px 20px;
+  }
+  .gallery-theatre-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .prod-secondary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .join-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+/* --- Tablets Portrait & Mobile Handsets (<= 768px) --- */
+@media (max-width: 768px) {
+  .site-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .topbar {
+    padding: 12px 16px;
+  }
+  .brand-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+  .brand span {
+    font-size: 17px;
+  }
+  .brand span small {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
   /* Mobile Hero Adjustments */
   .hero {
     min-height: auto;
-    padding: 20px 0;
+    padding: 16px 0 28px;
   }
   .hero-copy {
-    padding: 36px 18px 48px;
+    padding: 32px 18px 40px;
   }
   .hero-eyebrow {
-    font-size: 11px;
+    font-size: 10.5px;
     letter-spacing: 2px;
+    padding: 5px 12px;
   }
   .hero h1 {
-    font-size: clamp(28px, 7.5vw, 42px);
-    line-height: 1.25;
+    font-size: clamp(28px, 7.5vw, 38px);
+    line-height: 1.22;
     margin-bottom: 16px;
   }
   .theatre-hindi-callout {
-    font-size: clamp(14px, 4vw, 17px);
-    padding: 8px 16px;
+    font-size: clamp(13.5px, 3.8vw, 16px);
+    padding: 8px 14px;
     margin-bottom: 16px;
   }
   .hero .hero-sub {
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.65;
     margin-bottom: 24px;
   }
   .hero-actions {
     flex-direction: column;
     width: 100%;
-    gap: 12px;
+    gap: 10px;
   }
   .hero-actions .btn {
     width: 100%;
@@ -3668,9 +3714,25 @@ img {
   .next-show-banner {
     flex-wrap: wrap;
     gap: 6px;
-    padding: 8px 12px;
+    padding: 7px 12px;
     font-size: 11px;
   }
+  .hero-badge-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 26px;
+    padding-top: 20px;
+  }
+  .hero-badge-item {
+    padding: 10px 12px;
+  }
+  .hero-badge-item strong {
+    font-size: 20px;
+  }
+  .hero-badge-item span {
+    font-size: 10.5px;
+  }
+
   /* Intro Teaser Overlay on Mobile */
   .intro-center {
     padding: 14px;
@@ -3678,24 +3740,25 @@ img {
     max-width: 480px;
   }
   .intro-proscenium-frame {
-    padding: 30px 18px;
+    padding: 28px 16px;
+    outline: none;
   }
   .intro-presents {
-    font-size: 9.5px;
+    font-size: 9px;
     letter-spacing: 2px;
   }
   .intro-title {
-    font-size: clamp(32px, 11vw, 52px);
+    font-size: clamp(32px, 11vw, 50px);
     letter-spacing: 4px;
     margin-bottom: 8px;
   }
   .intro-tagline {
-    font-size: 13px;
+    font-size: 12.5px;
     letter-spacing: 1.5px;
     margin-bottom: 12px;
   }
   .intro-act-text {
-    font-size: 11.5px;
+    font-size: 11px;
     min-height: 36px;
     letter-spacing: 1px;
   }
@@ -3703,7 +3766,7 @@ img {
     flex-direction: column;
     width: 100%;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 18px;
   }
   .intro-btn {
     width: 100%;
@@ -3716,6 +3779,7 @@ img {
     text-align: center;
     padding: 9px 16px;
   }
+
   /* Royal Wings 1-Column on Mobile */
   .royal-wings-grid {
     grid-template-columns: 1fr;
@@ -3730,11 +3794,19 @@ img {
   .craft-grid {
     grid-template-columns: 1fr;
   }
+
   /* Gallery */
   .gallery-theatre-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+
+  /* Secondary Production Grid 1-Col on Mobile */
+  .prod-secondary-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   /* Lightbox Mobile Navigation */
   .lightbox-stage-portal {
     max-width: 96vw;
@@ -3746,20 +3818,22 @@ img {
   }
   .lightbox-prev {
     left: 4px;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
   }
   .lightbox-next {
     right: 4px;
-    width: 40px;
-    height: 40px;
-  }
-  #lightboxClose {
-    top: -44px;
-    right: 0;
     width: 38px;
     height: 38px;
-    font-size: 24px;
+    font-size: 16px;
+  }
+  #lightboxClose {
+    top: -42px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
   }
   .lightbox-thumbnails {
     gap: 6px;
@@ -3775,14 +3849,18 @@ img {
     font-size: 11px;
     gap: 8px;
   }
+
   /* Schedule Table */
   .playbill-table-wrap {
     display: none;
   }
   .playbill-mobile-cards {
     display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
-  /* Section Spacing */
+
+  /* Subpage Containers & Page Hero */
   .portfolio-section,
   .team-section,
   .gallery-section,
@@ -3791,21 +3869,38 @@ img {
   .page-hero {
     padding: 40px 18px;
   }
+  .page-hero h1 {
+    font-size: clamp(26px, 6.5vw, 36px);
+    line-height: 1.25;
+  }
+  .page-hero p.lead {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    padding: 12px;
+  }
+  .modal-box {
+    padding: 24px 18px;
+    width: 94%;
+  }
 }
 
 /* --- 4. Standard Mobile Handsets (<= 640px) --- */
 @media (max-width: 640px) {
   /* Grand Curtain Call Join Banner */
   .join-banner {
-    padding: 48px 18px;
+    padding: 44px 18px;
   }
   .join-banner h2 {
     font-size: clamp(22px, 6vw, 30px);
     line-height: 1.25;
   }
   .join-banner-hindi {
-    font-size: 16px;
-    padding: 8px 18px;
+    font-size: 15px;
+    padding: 8px 16px;
   }
   .join-banner p {
     font-size: 13.5px;
@@ -3825,9 +3920,10 @@ img {
     text-align: center;
     justify-content: center;
   }
+
   /* Theatrical Footer 1-Column */
   .footer {
-    padding: 44px 18px 20px;
+    padding: 40px 18px 20px;
   }
   .footer-top-strip {
     font-size: 10.5px;
@@ -3837,16 +3933,27 @@ img {
   }
   .footer-main {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 28px;
   }
   .footer-secretariat-box {
-    padding: 20px 16px;
+    padding: 18px 14px;
   }
   .copyright {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
     font-size: 11.5px;
+  }
+
+  /* Filters */
+  .filter-bar,
+  .gallery-filter-bar {
+    gap: 8px;
+  }
+  .filter-btn,
+  .gallery-filter-btn {
+    font-size: 10.5px;
+    padding: 7px 12px;
   }
 }
 
@@ -3861,40 +3968,55 @@ img {
   .brand span {
     font-size: 15px;
   }
+  .brand span small {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
   .hero-copy {
-    padding: 28px 14px 40px;
+    padding: 22px 14px 32px;
   }
   .hero h1 {
-    font-size: 27px;
-    line-height: 1.22;
+    font-size: 24px;
+    line-height: 1.2;
   }
   .hero .hero-sub {
-    font-size: 13.5px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .theatre-hindi-callout {
+    font-size: 13px;
+    padding: 6px 10px;
   }
   .team-person-img-wrap {
     aspect-ratio: 4 / 5;
+  }
+  .team-person-details {
+    padding: 20px 16px;
+  }
+  .team-person-name {
+    font-size: 21px;
   }
   .gallery-theatre-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
   .team-ensemble-img-wrap {
-    height: 220px;
-    min-height: 190px;
+    height: 210px;
+    min-height: 180px;
   }
   .team-ensemble-content {
-    padding: 20px 14px;
+    padding: 18px 14px;
   }
   .team-ensemble-content h3 {
-    font-size: 19px;
+    font-size: 18px;
   }
   .team-ensemble-tag {
-    font-size: 11.5px;
-    padding: 6px 12px;
+    font-size: 11px;
+    padding: 5px 10px;
     width: 100%;
   }
   .royal-section-title {
-    font-size: clamp(24px, 7vw, 34px);
+    font-size: clamp(22px, 6.5vw, 30px);
   }
   .royal-stageportal-card {
     padding: 18px 14px;
@@ -3904,5 +4026,16 @@ img {
   }
   .meta-num {
     font-size: 20px;
+  }
+  .subpage-container,
+  .page-hero {
+    padding: 30px 14px;
+  }
+  .page-hero h1 {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  .page-hero p.lead {
+    font-size: 13px;
   }
 }
