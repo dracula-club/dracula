@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The People Behind DRACULA — Dramatic &amp; Cultural Association | SRMCEM</title>
+  <meta name="description" content="Meet the leadership of DRACULA — Dramatic & Cultural Association, SRMCEM Lucknow.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/logo/dracula-logo.png">
+</head>
+<body>
+
+  <!-- THEATRICAL TEASER INTRO OVERLAY (Hidden by default; opens only on clicking Teaser button) -->
+  <div class="intro-overlay hidden" id="introOverlay" style="display: none;">
+    <div class="cinematic-letterbox-top"></div>
+    <div class="cinematic-letterbox-bottom"></div>
+    <div class="stage-spotlight-beam"></div>
+    <canvas id="trailerEmberCanvas"></canvas>
+    <div class="intro-curtain left"></div>
+    <div class="intro-curtain right"></div>
+    <button class="trailer-sound-toggle" id="soundToggleBtn" aria-label="Toggle Sound">🔊 Sound: ON</button>
+    <div class="intro-center">
+      <div class="intro-presents">&bull; SRMCEM &bull; DRAMATIC AND CULTURAL ASSOCIATION PRESENTS &bull;</div>
+      <h1 class="intro-title">DR<span>A</span>CULA</h1>
+      <p class="intro-tagline">&ldquo;WHERE STORIES <span>COME ALIVE&rdquo;</span></p>
+      <div class="intro-act-text" id="trailerActText">A LEGACY OF EXPRESSION SINCE 2003...</div>
+      <div class="intro-controls-row">
+        <button class="intro-btn" id="enterTheatreBtn">[ ENTER THEATRE &rarr; ]</button>
+        <button class="intro-skip-btn" id="skipIntroBtn">Skip Teaser &times;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-wrapper">
+    <!-- TOPBAR NAVIGATION -->
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img src="images/logo/dracula-logo.png" alt="Dracula Logo" class="brand-logo-img">
+        <span>DRACULA<small>DRAMATIC &amp; CULTURAL ASSOCIATION &bull; SRMCEM</small></span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="productions.html">Productions</a>
+        <a class="active" href="team.html">Team</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="events.html">Events</a>
+        <button class="topbar-sound-btn" id="navSoundBtn" aria-label="Toggle Sound">🔊 Sound: ON</button>
+        <a class="join-pill" href="https://docs.google.com/forms/d/e/1FAIpQLScNVNNVYDhJS2Orz6kTbKbEXBGYG7ORQNZbVJI6dVX08TQCDQ/viewform" target="_blank" rel="noopener">Join DRACULA ↗</a>
+        <a class="replay-btn replay-intro-btn" href="#" title="Replay Trailer">↺ Teaser</a>
+      </nav>
+
+      <button class="menu" id="menu" aria-label="Open menu">☰</button>
+    </header>
+
+    <main>
+      <!-- SUBPAGE HERO -->
+      <section class="page-hero bg-cinema">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a> <span>/</span> Executive Leadership
+        </div>
+        <span class="eyebrow">DRACULA &bull; Dramatic and Cultural Association</span>
+        <h1>The People Behind <span>DRACULA</span></h1>
+        <p class="lead">
+          Every performance begins with an idea, but bringing that vision to life takes leadership, discipline, and collective teamwork. Meet the executive leadership guiding DRACULA.
+        </p>
+      </section>
+
+      <!-- SECTION 1: CORE EXECUTIVE LEADERSHIP (SECRETARY & VICE SECRETARY ONLY) -->
+      <section class="subpage-container theatre-reveal">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Executive Council</span>
+            <h2>Club Leadership</h2>
+          </div>
+          <span class="text-link">Where Stories Come Alive</span>
+        </div>
+
+        <div class="team-executive-grid theatre-reveal-stagger">
+          <!-- 01. Club Secretary: Prabuddha Singh -->
+          <article class="team-person-card">
+            <div class="team-person-img-wrap">
+              <img src="images/team/member-1.jpg" alt="Prabuddha Singh — Club Secretary" class="person-img-prabuddha">
+            </div>
+            <div class="team-person-details">
+              <div>
+                <div class="team-role-eyebrow">CLUB SECRETARY</div>
+                <h3 class="team-person-name">Prabuddha Singh</h3>
+                <div class="team-dept-year">Final Year &bull; Information Technology (IT)</div>
+                <p class="team-person-bio">
+                  Leads the society with strategic vision, institutional coordination, and overall direction of club activities, rehearsals, and festival delegations.
+                </p>
+              </div>
+              <div class="team-key-credits">
+                <strong>Key Strengths:</strong> Leadership &bull; Communication &bull; Coordination
+              </div>
+            </div>
+          </article>
+
+          <!-- 02. Vice Secretary: Sankalp Shrivastava -->
+          <article class="team-person-card">
+            <div class="team-person-img-wrap">
+              <img src="images/team/member-2.jpg" alt="Sankalp Shrivastava — Vice Secretary" class="person-img-sankalp">
+            </div>
+            <div class="team-person-details">
+              <div>
+                <div class="team-role-eyebrow">VICE SECRETARY</div>
+                <h3 class="team-person-name">Sankalp Shrivastava</h3>
+                <div class="team-dept-year">Final Year &bull; Information Technology (IT)</div>
+                <p class="team-person-bio">
+                  Oversees operational logistics, team communication, and performance coordination. Portrayed Yamraj in the award-winning stage production <em>Yamraj Ki Adalat</em>.
+                </p>
+              </div>
+              <div class="team-key-credits">
+                <strong>Key Strengths:</strong> Team Operations &bull; Coordination &bull; Acting (Yamraj)
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- SECTION 2: OTHER MEMBERS & COORDINATORS (ENSEMBLE GROUP PHOTO) -->
+        <article class="team-ensemble-banner theatre-reveal">
+          <div class="team-ensemble-img-wrap" data-gallery-index="14" style="cursor:pointer;" title="Click to view full ensemble photograph in Cinema Lightbox">
+            <img src="images/team/TEAM.jpg" alt="DRACULA Ensemble — Other Members and Coordinators">
+          </div>
+          <div class="team-ensemble-content">
+            <span class="eyebrow">Collective Passion &bull; The Complete Stage Force</span>
+            <h3>Other Members &amp; Coordinators</h3>
+            <p>
+              Behind every standing ovation is the tireless energy of our ensemble — actors, backstage managers, lighting technicians, sound coordinators, musicians, scriptwriters, and student directors.
+            </p>
+            <p>
+              DRACULA's stage belongs to every member who pours their heart into the art. From high-decibel street circles to proscenium auditorium sets, the collective spirit is what brings every story to life.
+            </p>
+            <div class="team-ensemble-highlights">
+              <span class="team-ensemble-tag">🎭 Stage &amp; Street Actors</span>
+              <span class="team-ensemble-tag">🥁 Live Musicians &amp; Dholak</span>
+              <span class="team-ensemble-tag">💡 Lights &amp; Sound Technicians</span>
+              <span class="team-ensemble-tag">✍️ Scriptwriters</span>
+              <span class="team-ensemble-tag">📋 Production Coordinators</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- THEATRICAL TICKER MARQUEE -->
+      <div class="theatre-marquee-strip" aria-hidden="true" style="border-top:1px solid var(--drac-line-gold); border-bottom:1px solid var(--drac-line);">
+        <div class="theatre-marquee-track">
+          <span><span class="star">★</span> LEADERSHIP: PRABUDDHA SINGH &bull; SANKALP SHRIVASTAVA</span>
+          <span><span class="star">★</span> ENSEMBLE ACTORS &bull; LIVE PERCUSSIONISTS &bull; SOUND &amp; LIGHT CREW</span>
+          <span><span class="star">★</span> DRAMATIC &amp; CULTURAL ASSOCIATION &bull; SRMCEM</span>
+          <span><span class="star">★</span> AUDITIONS OPEN &bull; JOIN THE DRAMATIC SOCIETY</span>
+          <!-- Seamless loop clone -->
+          <span><span class="star">★</span> LEADERSHIP: PRABUDDHA SINGH &bull; SANKALP SHRIVASTAVA</span>
+          <span><span class="star">★</span> ENSEMBLE ACTORS &bull; LIVE PERCUSSIONISTS &bull; SOUND &amp; LIGHT CREW</span>
+          <span><span class="star">★</span> DRAMATIC &amp; CULTURAL ASSOCIATION &bull; SRMCEM</span>
+          <span><span class="star">★</span> AUDITIONS OPEN &bull; JOIN THE DRAMATIC SOCIETY</span>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           GRAND PROSCENIUM CURTAIN CALL (AUDITIONS & RECRUITMENT)
+           ======================================================== -->
+      <section class="join-banner">
+        <div class="join-banner-crest">
+          <span>✦</span> AUDITIONS &amp; RECRUITMENT 2026-2027 &bull; SRMCEM <span>✦</span>
+        </div>
+        
+        <h2>STEP ONTO THE PROSCENIUM.<br><span class="shine-gold">THE AUDITORIUM AWAITS YOUR VOICE.</span></h2>
+        
+        <div class="join-banner-hindi">
+          ॥ रंगमंच केवल अभिनय नहीं, यह आपकी रूह और आवाज़ की पहचान है ॥
+        </div>
+
+        <p>
+          No prior theatre or stagecraft experience required. Whether you hunger to command proscenium stage lights, roar in a high-octane street theatre circle, play live dholak percussion, choreograph lighting, or craft original scripts &mdash; DRACULA is your creative crucible at SRMCEM.
+        </p>
+
+        <!-- 4 RECRUITMENT WINGS -->
+        <div class="join-pillars-grid">
+          <div class="join-pillar-item">
+            <span class="join-pillar-icon">🎭</span>
+            <div class="join-pillar-title">Stage Actors</div>
+            <div class="join-pillar-desc">Classical proscenium plays, multi-character arcs, dialogue delivery &amp; voice control.</div>
+          </div>
+          <div class="join-pillar-item">
+            <span class="join-pillar-icon">📢</span>
+            <div class="join-pillar-title">Street Play Ensemble</div>
+            <div class="join-pillar-desc">High-energy Nukkad Natak, social satire, rhythmic movements &amp; courtyard circles.</div>
+          </div>
+          <div class="join-pillar-item">
+            <span class="join-pillar-icon">🥁</span>
+            <div class="join-pillar-title">Live Percussion &amp; Chorus</div>
+            <div class="join-pillar-desc">Dholak, duff, harmonium, vocal chorus chanting &amp; authentic live music accompaniment.</div>
+          </div>
+          <div class="join-pillar-item">
+            <span class="join-pillar-icon">💡</span>
+            <div class="join-pillar-title">Stagecraft &amp; Script</div>
+            <div class="join-pillar-desc">Proscenium lighting choreo, sound coordination, scriptwriting &amp; backstage architecture.</div>
+          </div>
+        </div>
+
+        <div class="join-banner-actions">
+          <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScNVNNVYDhJS2Orz6kTbKbEXBGYG7ORQNZbVJI6dVX08TQCDQ/viewform" target="_blank" rel="noopener" style="font-size:14px; padding:16px 36px;">
+            ✦ Fill Official Audition Form ↗
+          </a>
+          <a class="btn" href="productions.html">
+            Explore Productions Repertoire &rarr;
+          </a>
+        </div>
+
+        <div class="join-banner-status">
+          <span class="live-beacon-pulse"></span>
+          <span>AUDITIONS OPEN FOR ALL BRANCHES &amp; YEARS &bull; SRMCEM LUCKNOW</span>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================
+         THEATRICAL GRAND PLAYBILL FOOTER (4-COLUMN RICH ARCHITECTURE)
+         ======================================================== -->
+    <footer class="footer">
+      <div class="footer-top-strip">
+        <span>॥ नाट्यं भिन्नरुचेर्जनस्य बहुधाप्येकं समाराधनम् ॥ WHERE STORIES COME ALIVE &bull; DRACULA SRMCEM EST. 2003</span>
+      </div>
+
+      <div class="footer-main">
+        <!-- COL 1: SOCIETY EMBLEM & MISSION -->
+        <div class="footer-about">
+          <a class="brand" href="index.html">
+            <img src="images/logo/dracula-logo.png" alt="Dracula Logo" class="brand-logo-img">
+            <span>DRACULA<small>DRAMATIC &amp; CULTURAL ASSOCIATION</small></span>
+          </a>
+          <p>
+            The Official Dramatic Society of Shri Ramswaroop Memorial College of Engineering &amp; Management (SRMCEM), Lucknow. Dedicated to proscenium theatre, high-decibel street plays (नुक्कड़ नाटक), live percussion, and authentic cultural storytelling since 2003.
+          </p>
+          <div class="footer-campus-badge">
+            <span>🏛️</span> SRMCEM Tiwariganj, Faizabad Road, Lucknow
+          </div>
+          <div class="footer-social-row">
+            <a href="https://www.instagram.com/dracula__club/" target="_blank" rel="noopener" class="social-icon" title="Follow DRACULA on Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@dracula_srmcem" target="_blank" rel="noopener" class="social-icon" title="Subscribe to DRACULA on YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="mailto:srmcemdracula@gmail.com" class="social-icon" title="Email DRACULA Secretariat" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l9.518 7.713c.291.236.721.236 1.012 0l9.518-7.713v11.817h-20.048z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- COL 2: THE FOUR PILLARS & WINGS -->
+        <div class="footer-col">
+          <h5>Theatrical Wings</h5>
+          <div class="footer-wing-list">
+            <a href="productions.html" class="footer-wing-item">
+              <span class="wing-icon">🎭</span>
+              <div>
+                <span class="wing-name">Proscenium Stage Plays</span>
+                <span class="wing-sub">Grand Auditorium Productions</span>
+              </div>
+            </a>
+            <a href="productions.html" class="footer-wing-item">
+              <span class="wing-icon">📢</span>
+              <div>
+                <span class="wing-name">Nukkad Natak</span>
+                <span class="wing-sub">Courtyard &amp; Street Plays</span>
+              </div>
+            </a>
+            <a href="productions.html" class="footer-wing-item">
+              <span class="wing-icon">🕯️</span>
+              <div>
+                <span class="wing-name">Monoacts &amp; Dialogue</span>
+                <span class="wing-sub">Solo Psychology &amp; Expressions</span>
+              </div>
+            </a>
+            <a href="about.html" class="footer-wing-item">
+              <span class="wing-icon">🥁</span>
+              <div>
+                <span class="wing-name">Live Percussion &amp; Music</span>
+                <span class="wing-sub">Dholak, Vocals &amp; Choral Chants</span>
+              </div>
+            </a>
+            <a href="events.html" class="footer-wing-item">
+              <span class="wing-icon">🏆</span>
+              <div>
+                <span class="wing-name">Abhivyakti Showcase</span>
+                <span class="wing-sub">Annual Flagship Festival</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- COL 3: NAVIGATION -->
+        <div class="footer-col">
+          <h5>Society Navigate</h5>
+          <div class="footer-links">
+            <a href="index.html">Home Stage</a>
+            <a href="about.html">About DRACULA</a>
+            <a href="productions.html">Theatrical Productions</a>
+            <a href="team.html" style="color:var(--drac-gold-bright); font-weight:600;">The Core Team</a>
+            <a href="gallery.html">Visual Archive (16 Stills)</a>
+            <a href="events.html">Events &amp; Playbill Schedule</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScNVNNVYDhJS2Orz6kTbKbEXBGYG7ORQNZbVJI6dVX08TQCDQ/viewform" target="_blank" rel="noopener" style="color:var(--drac-crimson-vivid); font-weight:600;">Join DRACULA Auditions ↗</a>
+          </div>
+        </div>
+
+        <!-- COL 4: EXECUTIVE COUNCIL & AUDITIONS -->
+        <div class="footer-col">
+          <h5>Secretariat &amp; Auditions</h5>
+          <div class="footer-secretariat-box">
+            <div class="secretariat-status">
+              <span class="live-beacon-pulse"></span>
+              <span>RECRUITMENT ACTIVE</span>
+            </div>
+
+            <div class="secretariat-officer">
+              <div class="officer-role">Club Secretary</div>
+              <div class="officer-name">Prabuddha Singh</div>
+            </div>
+
+            <div class="secretariat-officer">
+              <div class="officer-role">Vice Secretary</div>
+              <div class="officer-name">Sankalp Shrivastava</div>
+            </div>
+
+            <a class="secretariat-join-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScNVNNVYDhJS2Orz6kTbKbEXBGYG7ORQNZbVJI6dVX08TQCDQ/viewform" target="_blank" rel="noopener">
+              Apply For Auditions ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT & ATTRIBUTION -->
+      <div class="copyright">
+        <span>&copy; 2026 DRACULA &bull; Dramatic and Cultural Association. All rights reserved.</span>
+        <span>Affiliated with Shri Ramswaroop Memorial College of Engineering &amp; Management, Lucknow.</span>
+        <span>Where Stories Come Alive &bull; Est. 2003</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Cinema Lightbox Modal -->
+  <div class="modal-overlay" id="lightboxOverlay">
+    <div class="lightbox-stage-portal">
+      <span class="modal-close" id="lightboxClose" aria-label="Close Lightbox">&times;</span>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Previous photograph" title="Previous Still (←)">&#10094;</button>
+      <div class="lightbox-frame">
+        <div class="lightbox-spinner" id="lightboxSpinner">
+          <div class="theatre-spinner-ring"></div>
+          <span>DEVELOPING STAGE STILL...</span>
+        </div>
+        <img id="lightboxImg" src="" alt="DRACULA Theatrical Archive">
+      </div>
+      <div class="lightbox-caption-bar">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-thumbnails" id="lightboxThumbnails" title="Click thumbnail to jump to photograph"></div>
+      </div>
+      <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" aria-label="Next photograph" title="Next Still (→)">&#10095;</button>
+    </div>
+  </div>
+
+  <!-- FLOATING STAGE CUE BUTTON (BACK TO TOP) -->
+  <button class="stage-cue-btn" id="stageCueBtn" aria-label="Return to Top of Stage" title="Return to Top of Stage">
+    <span class="cue-arrow">▲</span>
+    <span>Top of Stage</span>
+  </button>
+
+  <div class="notice" id="notice">DRACULA Leadership</div>
+  <script src="script.js"></script>
+</body>
+</html>

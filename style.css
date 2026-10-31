@@ -1,0 +1,3621 @@
+/* ========================================================
+   DRACULA — Dramatic & Cultural Association (SRMCEM)
+   OFFICIAL THEATRICAL DESIGN SYSTEM & STYLESHEET
+   Aesthetics: Classical Proscenium Theatre • Editorial Cinema
+   Colors: Deep Charcoal, Obsidian, Dark Burgundy, Crimson Accents, Warm Ivory
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Core Theatrical Palette */
+  --drac-black: #060507;
+  --drac-deep: #0a080d;
+  --drac-bg: #0e0b11;
+  --drac-surface: #140f18;
+  --drac-surface-card: #18121d;
+  --drac-surface-card-hover: #221829;
+  
+  /* Burgundy & Crimson Theatrical Tones (Used with Restraint) */
+  --drac-burgundy: #220c18;
+  --drac-burgundy-light: #361326;
+  --drac-crimson: #b81d28;
+  --drac-crimson-vivid: #d91f2b;
+  --drac-crimson-subtle: rgba(184, 29, 40, 0.14);
+  --drac-crimson-glow: rgba(217, 31, 43, 0.32);
+
+  /* Warm Ivory Typography */
+  --drac-text-primary: #f5ede4;
+  --drac-text-secondary: #c2b5bc;
+  --drac-text-muted: #8c8087;
+  --drac-text-faint: #5a5156;
+
+  /* Theatrical Stage Gold Accent */
+  --drac-gold: #c5a059;
+  --drac-gold-bright: #dfb96f;
+  --drac-gold-subtle: rgba(197, 160, 89, 0.12);
+
+  /* Structural Hairlines */
+  --drac-line: #221722;
+  --drac-line-accent: rgba(184, 29, 40, 0.28);
+  --drac-line-gold: rgba(197, 160, 89, 0.22);
+
+  /* Fonts */
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Spacing & Transitions */
+  --transition-smooth: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-cinematic: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --spring-bounce: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ========================================================
+   GLOBAL RESETS & BASE STYLING
+   ======================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--drac-black);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--drac-bg);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(54, 19, 38, 0.28) 0%, transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(184, 29, 40, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 15% 75%, rgba(197, 160, 89, 0.05) 0%, transparent 45%);
+  color: var(--drac-text-primary);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Restrained Theatrical Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--drac-black);
+  border-left: 1px solid var(--drac-line);
+}
+::-webkit-scrollbar-thumb {
+  background: #331623;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--drac-crimson);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.site-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Typography Helpers */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--drac-gold);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  font-family: var(--font-cinzel);
+  font-size: clamp(26px, 3.5vw, 38px);
+  color: var(--drac-text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+}
+
+.text-link {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--drac-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.text-link:hover {
+  color: var(--drac-text-primary);
+  border-bottom-color: var(--drac-gold);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  border: 1px solid var(--drac-line-accent);
+  background: rgba(22, 14, 24, 0.85);
+  color: var(--drac-text-primary);
+}
+
+.btn:hover {
+  background: var(--drac-surface-card-hover);
+  border-color: var(--drac-crimson);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #a51822 0%, #7d1119 100%);
+  border-color: rgba(217, 31, 43, 0.6);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(184, 29, 40, 0.35);
+}
+
+.btn.primary:hover {
+  background: linear-gradient(135deg, #c41e2a 0%, #94151e 100%);
+  border-color: var(--drac-crimson-vivid);
+  box-shadow: 0 8px 28px rgba(217, 31, 43, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn.gold {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.18) 0%, rgba(197, 160, 89, 0.08) 100%);
+  border-color: var(--drac-gold);
+  color: var(--drac-gold-bright);
+}
+
+.btn.gold:hover {
+  background: var(--drac-gold);
+  color: var(--drac-black);
+  box-shadow: 0 6px 22px rgba(197, 160, 89, 0.4);
+}
+
+/* ========================================================
+   CINEMATIC THEATRE TEASER INTRO OVERLAY
+   Anamorphic 2.39:1 Letterbox • Golden Stage Embers • Controlled Reveal
+   ======================================================== */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #030204;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.85s cubic-bezier(0.77, 0, 0.175, 1), 
+              visibility 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.intro-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none !important;
+}
+
+/* Anamorphic 2.39:1 Letterbox Bars */
+.cinematic-letterbox-top,
+.cinematic-letterbox-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(24px, 6vh, 60px);
+  background: #000;
+  z-index: 30;
+  pointer-events: none;
+}
+.cinematic-letterbox-top { top: 0; }
+.cinematic-letterbox-bottom { bottom: 0; }
+
+/* Theatrical Embers Particle Canvas */
+#trailerBatsCanvas,
+#trailerEmberCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* Atmospheric Volumetric Spotlight Beam */
+.stage-spotlight-beam {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(280px, 45vw, 650px);
+  height: 120%;
+  background: radial-gradient(ellipse at top, rgba(220, 180, 110, 0.18) 0%, rgba(184, 29, 40, 0.08) 45%, transparent 75%);
+  pointer-events: none;
+  z-index: 6;
+  filter: blur(14px);
+}
+
+/* Royal Theatrical Valance (Top Drapery Pelmet) */
+.theatre-valance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(55px, 9vw, 95px);
+  background: 
+    radial-gradient(ellipse at 50% 0%, #460f25 0%, #1f0612 65%, #080205 100%),
+    repeating-linear-gradient(90deg, #16040d 0px, #3c0c21 25px, #16040d 50px);
+  border-bottom: 3px solid var(--drac-gold);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.95), inset 0 -3px 12px rgba(229, 185, 105, 0.45);
+  z-index: 25;
+  pointer-events: none;
+}
+
+.theatre-valance::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background: repeating-linear-gradient(90deg, var(--drac-gold) 0px, var(--drac-gold) 4px, #422b10 4px, #422b10 8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.85);
+}
+
+/* 3D Theatrical Velvet Curtain Doors (Seamless • Zero Seam Artifacts) */
+.intro-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  z-index: 15;
+  transition: transform 1.4s cubic-bezier(0.75, 0, 0.15, 1), opacity 1.2s ease;
+  pointer-events: none;
+  background: 
+    repeating-linear-gradient(90deg, 
+      #040103 0px, 
+      #13030b 16px, 
+      #2d071a 36px, 
+      #470c29 52px, 
+      #2d071a 68px, 
+      #13030b 88px, 
+      #040103 104px);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.95), 0 0 80px rgba(0, 0, 0, 0.95);
+  transform-style: preserve-3d;
+}
+
+.intro-curtain.left {
+  left: 0;
+  transform-origin: left center;
+  box-shadow: inset -25px 0 45px rgba(0, 0, 0, 0.9);
+}
+
+.intro-curtain.right {
+  right: 0;
+  transform-origin: right center;
+  box-shadow: inset 25px 0 45px rgba(0, 0, 0, 0.9);
+}
+
+.intro-overlay.revealing .intro-curtain.left {
+  transform: translateX(-105%) scaleX(0.2) skewY(-3deg);
+  opacity: 0;
+}
+
+.intro-overlay.revealing .intro-curtain.right {
+  transform: translateX(105%) scaleX(0.2) skewY(3deg);
+  opacity: 0;
+}
+
+.intro-overlay.revealing .intro-center {
+  opacity: 0;
+  transform: scale(1.06) translateY(-12px);
+  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.intro-center {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  padding: 20px;
+  max-width: 860px;
+  width: 92%;
+}
+
+.intro-proscenium-frame {
+  border: 2px solid var(--drac-gold);
+  outline: 1px solid rgba(197, 160, 89, 0.35);
+  outline-offset: -7px;
+  padding: 48px 40px;
+  background: radial-gradient(circle at center, #260918 0%, #0d040a 100%);
+  border-radius: 6px;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.98), 0 0 40px rgba(217, 31, 43, 0.25), inset 0 0 45px rgba(229, 185, 105, 0.1);
+  position: relative;
+  animation: introFrameBreathe 4s ease-in-out infinite alternate;
+}
+
+@keyframes introFrameBreathe {
+  0% { transform: translateY(0) scale(1); box-shadow: 0 0 80px rgba(0, 0, 0, 0.98), 0 0 35px rgba(217, 31, 43, 0.25); }
+  100% { transform: translateY(-4px) scale(1.008); box-shadow: 0 10px 90px rgba(0, 0, 0, 0.98), 0 0 55px rgba(229, 185, 105, 0.35); }
+}
+
+.intro-proscenium-frame::before {
+  content: '✦ THEATRE PROSCENIUM ✦';
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--drac-gold-bright);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  background: #0d0408;
+  padding: 2px 14px;
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 20px;
+}
+
+.intro-proscenium-frame::after {
+  content: 'EST. 2003 • SRMCEM';
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--drac-gold);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 2.5px;
+  background: #0d0408;
+  padding: 2px 14px;
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 20px;
+}
+
+.intro-blood-a {
+  color: var(--drac-crimson-vivid) !important;
+  display: inline-block;
+  text-shadow: 0 0 25px rgba(255, 45, 60, 0.8), 0 0 50px rgba(217, 31, 43, 0.6);
+  animation: bloodGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes bloodGlow {
+  0% { transform: scale(1); text-shadow: 0 0 20px rgba(255, 45, 60, 0.6); }
+  100% { transform: scale(1.04); text-shadow: 0 0 40px rgba(255, 45, 60, 1), 0 0 70px rgba(217, 31, 43, 0.8); }
+}
+
+.btn-cue-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--drac-gold-bright);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px var(--drac-gold-bright);
+  animation: beaconPulse 1.4s infinite ease-in-out;
+}
+
+.intro-presents {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--drac-gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.intro-title {
+  font-family: var(--font-cinzel);
+  font-size: clamp(40px, 8vw, 84px);
+  letter-spacing: clamp(6px, 1.5vw, 14px);
+  font-weight: 900;
+  color: var(--drac-text-primary);
+  line-height: 1;
+  margin-bottom: 10px;
+  text-shadow: 0 0 35px rgba(217, 31, 43, 0.4);
+}
+
+.intro-title span {
+  color: var(--drac-crimson-vivid);
+}
+
+.intro-tagline {
+  font-family: var(--font-cinzel);
+  font-size: clamp(14px, 2.2vw, 22px);
+  letter-spacing: 2.5px;
+  color: var(--drac-text-secondary);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.intro-act-text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--drac-gold-bright);
+  letter-spacing: 2px;
+  min-height: 24px;
+  margin-bottom: 30px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.intro-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.intro-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 34px;
+  background: linear-gradient(135deg, var(--drac-crimson) 0%, #85121b 100%);
+  border: 1px solid var(--drac-crimson-vivid);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 6px 24px rgba(184, 29, 40, 0.4);
+}
+
+.intro-btn:hover {
+  background: var(--drac-crimson-vivid);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(217, 31, 43, 0.6);
+}
+
+/* Animated Theatrical Button Sheen Sweep */
+.btn.primary,
+.join-pill,
+.royal-cta-btn,
+.intro-btn,
+.secretariat-join-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.primary::before,
+.join-pill::before,
+.royal-cta-btn::before,
+.intro-btn::before,
+.secretariat-join-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform: rotate(25deg);
+  transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn.primary:hover::before,
+.join-pill:hover::before,
+.royal-cta-btn:hover::before,
+.intro-btn:hover::before,
+.secretariat-join-btn:hover::before {
+  left: 140%;
+}
+
+.intro-skip-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--drac-text-muted);
+  letter-spacing: 1.5px;
+  padding: 10px 18px;
+  border: 1px solid var(--drac-line);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.intro-skip-btn:hover {
+  color: var(--drac-text-primary);
+  border-color: var(--drac-text-secondary);
+}
+
+/* Sound Toggle Top-Right */
+.trailer-sound-toggle {
+  position: absolute;
+  top: clamp(20px, 4vh, 40px);
+  right: clamp(20px, 4vw, 40px);
+  z-index: 35;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--drac-text-secondary);
+  background: rgba(14, 11, 17, 0.85);
+  border: 1px solid var(--drac-line-gold);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: var(--transition-smooth);
+}
+
+.trailer-sound-toggle:hover {
+  color: #fff;
+  border-color: var(--drac-gold);
+}
+
+/* ========================================================
+   TOPBAR NAVIGATION
+   ======================================================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1px solid var(--drac-line);
+  background: rgba(10, 8, 13, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition-smooth);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.4));
+  transition: transform 0.4s ease;
+}
+
+.brand:hover .brand-logo-img {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.brand span {
+  font-family: var(--font-cinzel);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--drac-text-primary);
+  line-height: 1.1;
+}
+
+.brand span small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--drac-gold);
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav a {
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--drac-text-secondary);
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--drac-crimson);
+  transition: width 0.3s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--drac-text-primary);
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+  width: 100%;
+}
+
+.nav a.join-pill {
+  padding: 9px 20px;
+  background: linear-gradient(135deg, var(--drac-crimson) 0%, #85121b 100%);
+  border: 1px solid var(--drac-crimson-vivid);
+  color: #ffffff;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.nav a.join-pill::after {
+  display: none;
+}
+
+.nav a.join-pill:hover {
+  background: var(--drac-crimson-vivid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(217, 31, 43, 0.45);
+}
+
+.nav a.replay-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--drac-gold);
+  padding: 6px 12px;
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 3px;
+}
+
+.nav a.replay-btn::after {
+  display: none;
+}
+
+.nav a.replay-btn:hover {
+  border-color: var(--drac-gold);
+  background: var(--drac-gold-subtle);
+}
+
+.topbar-sound-btn {
+  background: rgba(14, 11, 17, 0.6);
+  border: 1px solid var(--drac-line-gold);
+  color: var(--drac-gold);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.topbar-sound-btn:hover {
+  background: rgba(229, 185, 105, 0.15);
+  border-color: var(--drac-gold);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.sound-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+}
+
+.sound-bars .bar {
+  width: 2.5px;
+  background: var(--drac-gold);
+  border-radius: 1px;
+  height: 3px;
+  transition: height 0.2s ease, background-color 0.2s ease;
+}
+
+.sound-active .sound-bars .bar:nth-child(1) {
+  animation: soundBarPulse 0.75s ease-in-out infinite alternate;
+}
+.sound-active .sound-bars .bar:nth-child(2) {
+  animation: soundBarPulse 0.55s ease-in-out 0.2s infinite alternate;
+}
+.sound-active .sound-bars .bar:nth-child(3) {
+  animation: soundBarPulse 0.85s ease-in-out 0.35s infinite alternate;
+}
+
+@keyframes soundBarPulse {
+  0% { height: 3px; }
+  100% { height: 12px; background: var(--drac-crimson-vivid); }
+}
+
+.menu {
+  display: none;
+  font-size: 24px;
+  color: var(--drac-text-primary);
+  background: none;
+  cursor: pointer;
+}
+
+/* ========================================================
+   THEATRICAL PROSCENIUM ARCH & SPOTLIGHT FOLLOWER
+   ======================================================== */
+.proscenium-arch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--drac-gold) 20%, 
+    var(--drac-crimson-vivid) 50%, 
+    var(--drac-gold) 80%, 
+    transparent 100%
+  );
+  z-index: 10;
+  box-shadow: 0 0 16px rgba(229, 185, 105, 0.45);
+}
+
+.stage-spotlight-follower {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    circle 420px at var(--spotlight-x, 50%) var(--spotlight-y, 45%),
+    rgba(229, 185, 105, 0.12) 0%,
+    rgba(217, 31, 43, 0.05) 45%,
+    transparent 80%
+  );
+  transition: opacity 0.35s ease;
+  mix-blend-mode: screen;
+}
+
+/* Next Curtain Call Ticker Banner */
+.next-show-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(217, 31, 43, 0.12);
+  border: 1px solid rgba(217, 31, 43, 0.35);
+  border-radius: 30px;
+  padding: 8px 18px;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--drac-text-primary);
+  animation: bannerGlowPulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes bannerGlowPulse {
+  0% { box-shadow: 0 0 10px rgba(217, 31, 43, 0.15); border-color: rgba(217, 31, 43, 0.35); }
+  100% { box-shadow: 0 0 24px rgba(217, 31, 43, 0.4); border-color: var(--drac-crimson-vivid); }
+}
+
+.next-show-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--drac-crimson-vivid);
+  box-shadow: 0 0 8px var(--drac-crimson-vivid);
+  animation: beaconPulse 1.6s infinite;
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 31, 43, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(217, 31, 43, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 31, 43, 0); }
+}
+
+.next-show-label {
+  color: var(--drac-gold);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.next-show-date {
+  color: var(--drac-text-muted);
+}
+
+/* ========================================================
+   HERO SECTION — PROSCENIUM THEATRICAL OPENING
+   ======================================================== */
+.hero {
+  position: relative;
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--drac-line);
+  overflow: hidden;
+  background-color: var(--drac-black);
+}
+
+/* Hero Stage Curtains & Side Borders Removed for clean full-bleed theatre proscenium */
+.hero-stage-drapes,
+.hero-stage-valance,
+.drape-tassel {
+  display: none !important;
+}
+
+/* Glowing Proscenium Footlights Strip (Stage Lip) */
+.hero-stage-footlights {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  z-index: 6;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg,
+    rgba(235, 185, 95, 0.95) 0px,
+    rgba(235, 185, 95, 0.95) 12px,
+    transparent 12px,
+    transparent 42px
+  );
+  box-shadow: 0 -8px 25px rgba(229, 185, 105, 0.7), 0 -2px 10px rgba(217, 31, 43, 0.55);
+}
+
+/* Dramatic Hindi Theatrical Callout */
+.theatre-hindi-callout {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 26px;
+  padding: 8px 18px;
+  background: linear-gradient(90deg, rgba(32, 8, 16, 0.88) 0%, rgba(14, 5, 10, 0.94) 100%);
+  border-left: 3px solid var(--drac-crimson-vivid);
+  border-right: 1px solid var(--drac-line-gold);
+  border-top: 1px solid var(--drac-line);
+  border-bottom: 1px solid var(--drac-line);
+  border-radius: 3px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.theatre-hindi-callout .shloka-decor {
+  color: var(--drac-gold);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.theatre-hindi-callout .hindi-text {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.35vw, 15.5px);
+  font-weight: 500;
+  color: #f5eaec;
+  letter-spacing: 0.5px;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(7, 5, 8, 0.95) 0%, rgba(7, 5, 8, 0.75) 45%, rgba(7, 5, 8, 0.45) 100%),
+    linear-gradient(0deg, rgba(7, 5, 8, 0.9) 0%, transparent 60%),
+    url('images/hero/hero-bg.webp');
+  background-size: cover;
+  background-position: center right;
+  z-index: 1;
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 5;
+  padding: 80px 48px;
+  max-width: 820px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--drac-gold);
+  margin-bottom: 20px;
+  padding: 6px 14px;
+  background: rgba(197, 160, 89, 0.08);
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 2px;
+}
+
+.hero h1 {
+  font-family: var(--font-cinzel);
+  font-size: clamp(34px, 5.2vw, 64px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--drac-text-primary);
+  margin-bottom: 22px;
+  letter-spacing: 0.5px;
+}
+
+.hero h1 span {
+  color: var(--drac-crimson-vivid);
+  display: inline-block;
+}
+
+.hero .hero-sub {
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: var(--drac-text-secondary);
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+
+.hero .hero-sub em {
+  color: var(--drac-gold);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-badge-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--drac-line-gold);
+}
+
+.hero-badge-item {
+  display: flex;
+  flex-direction: column;
+  background: rgba(16, 10, 18, 0.65);
+  border: 1px solid var(--drac-line);
+  padding: 12px 14px;
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hero-badge-item:hover {
+  border-color: var(--drac-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(197, 160, 89, 0.2);
+}
+
+.hero-badge-item strong {
+  font-family: var(--font-cinzel);
+  font-size: 24px;
+  color: var(--drac-gold-bright);
+  font-weight: 800;
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(229, 185, 105, 0.4);
+}
+
+.hero-badge-item span {
+  font-size: 10px;
+  color: var(--drac-text-secondary);
+  font-family: var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ========================================================
+   INFINITE THEATRICAL MARQUEE STRIP
+   ======================================================== */
+.theatre-marquee-strip {
+  background: linear-gradient(90deg, #140810 0%, #240a19 50%, #140810 100%);
+  border-top: 1px solid var(--drac-line-gold);
+  border-bottom: 1px solid var(--drac-line-accent);
+  padding: 15px 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85);
+  user-select: none;
+  z-index: 5;
+}
+
+.theatre-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  width: max-content;
+  white-space: nowrap;
+  animation: marqueeScroll 36s linear infinite;
+  will-change: transform;
+}
+
+.theatre-marquee-strip:hover .theatre-marquee-track {
+  animation-play-state: paused;
+}
+
+.theatre-marquee-track span {
+  font-family: var(--font-cinzel);
+  font-size: 13.5px;
+  letter-spacing: 2.5px;
+  color: var(--drac-gold-bright);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theatre-marquee-track .star {
+  color: var(--drac-crimson-vivid);
+  font-size: 14px;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 3D Theatrical Card Tilt & Dynamic Glare Sheen */
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1100px;
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+.tilt-card.tilt-moving {
+  transition: transform 0.05s linear;
+}
+
+.card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 360px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.16) 0%, rgba(229, 185, 105, 0.08) 35%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: overlay;
+  z-index: 10;
+}
+
+.prod-card:hover .card-glare,
+.team-person-card:hover .card-glare,
+.featured-prod-hero:hover .card-glare,
+.playbill-card:hover .card-glare,
+.craft-card:hover .card-glare,
+.gallery-theatre-card:hover .card-glare,
+.milestone-item:hover .card-glare,
+.milestone-card:hover .card-glare,
+.team-ensemble-banner:hover .card-glare {
+  opacity: 1;
+}
+
+.hero-stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+/* Gold Foil Metallic Shine Effect */
+.shine-gold {
+  background: linear-gradient(110deg, #f5ede4 0%, #c5a059 25%, #ffffff 50%, #c5a059 75%, #f5ede4 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineSweep 5s linear infinite;
+}
+
+@keyframes shineSweep {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ========================================================
+   ROYAL THEATRICAL ABOUT & 4 PILLARS SHOWCASE (HIGH BUDGET)
+   ======================================================== */
+.royal-about-showcase {
+  position: relative;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(184, 29, 40, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
+    #0c0810;
+  border-top: 1px solid var(--drac-line-gold);
+  border-bottom: 1px solid var(--drac-line);
+  padding: 100px 48px;
+  overflow: hidden;
+}
+
+.royal-section-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-cinzel);
+  font-size: clamp(80px, 16vw, 240px);
+  font-weight: 900;
+  color: rgba(229, 185, 105, 0.025);
+  letter-spacing: clamp(10px, 3vw, 36px);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.royal-about-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.royal-section-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 64px;
+}
+
+.royal-crest-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--drac-gold-bright);
+  background: rgba(197, 160, 89, 0.08);
+  border: 1px solid var(--drac-line-gold);
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 18px;
+}
+
+.crest-sparkle {
+  color: var(--drac-crimson-vivid);
+  font-size: 13px;
+}
+
+.royal-section-title {
+  font-family: var(--font-cinzel);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  color: var(--drac-text-primary);
+  margin-bottom: 16px;
+}
+
+.royal-section-subtitle {
+  font-size: clamp(14px, 1.8vw, 16.5px);
+  color: var(--drac-text-secondary);
+  line-height: 1.8;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.royal-about-split {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* LEFT: PROSCENIUM STAGEPORTAL CARD */
+.royal-stageportal-card {
+  background: linear-gradient(145deg, #160f1c 0%, #0d0711 100%);
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(197, 160, 89, 0.05);
+  position: relative;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.royal-stageportal-card:hover {
+  border-color: var(--drac-gold);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(197, 160, 89, 0.25);
+}
+
+.stageportal-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: #000;
+}
+
+.stageportal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: contrast(1.06) brightness(0.92);
+}
+
+.royal-stageportal-card:hover .stageportal-img {
+  transform: scale(1.06);
+  filter: contrast(1.1) brightness(1);
+}
+
+.stageportal-vignette {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(0deg, #160f1c 0%, rgba(22, 15, 28, 0.4) 40%, transparent 100%),
+    radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+
+.stageportal-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 4, 8, 0.85);
+  border: 1px solid var(--drac-line-gold);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--drac-gold-bright);
+  backdrop-filter: blur(8px);
+}
+
+.stageportal-badge .live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--drac-crimson-vivid);
+  box-shadow: 0 0 8px var(--drac-crimson-vivid);
+  animation: beaconPulse 1.5s infinite;
+}
+
+.stageportal-quote-strip {
+  position: absolute;
+  bottom: 14px;
+  left: 18px;
+  right: 18px;
+  background: rgba(12, 6, 11, 0.88);
+  border-left: 3px solid var(--drac-gold);
+  border-radius: 0 4px 4px 0;
+  padding: 10px 14px;
+  backdrop-filter: blur(8px);
+}
+
+.stageportal-quote-strip p {
+  font-family: var(--font-cinzel);
+  font-size: 12.5px;
+  color: var(--drac-gold-bright);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.stageportal-body {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.stageportal-meta-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  border-bottom: 1px solid var(--drac-line);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-num {
+  font-family: var(--font-cinzel);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--drac-gold);
+  line-height: 1;
+}
+
+.meta-lbl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--drac-text-muted);
+}
+
+.stageportal-desc {
+  font-size: 14px;
+  color: var(--drac-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 26px;
+}
+
+.stageportal-desc strong {
+  color: var(--drac-text-primary);
+}
+
+.royal-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(184, 29, 40, 0.25) 0%, rgba(26, 12, 22, 0.6) 100%);
+  border: 1px solid var(--drac-line-accent);
+  border-radius: 3px;
+  padding: 14px 22px;
+  color: var(--drac-text-primary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.royal-cta-btn:hover {
+  background: var(--drac-crimson);
+  border-color: var(--drac-crimson-vivid);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(217, 31, 43, 0.5);
+}
+
+.royal-cta-btn .btn-arrow {
+  transition: transform 0.25s ease;
+}
+
+.royal-cta-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* RIGHT: 4 ROYAL WING CARDS */
+.royal-wings-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.royal-wings-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--drac-crimson-vivid);
+  font-weight: 600;
+}
+
+.royal-wings-eyebrow .gold-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--drac-line-accent), transparent);
+}
+
+.royal-wings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.royal-wing-card {
+  position: relative;
+  background: #120c16;
+  border: 1px solid var(--drac-line);
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  min-height: 280px;
+}
+
+.royal-wing-card:hover {
+  border-color: var(--drac-gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(197, 160, 89, 0.22);
+}
+
+.wing-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.22;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  filter: saturate(0.8) contrast(1.1);
+}
+
+.royal-wing-card:hover .wing-card-bg {
+  transform: scale(1.08);
+  opacity: 0.38;
+  filter: saturate(1.1) contrast(1.15);
+}
+
+.wing-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(14, 8, 16, 0.8) 0%, rgba(14, 8, 16, 0.95) 75%, #0e0810 100%),
+    radial-gradient(circle at 100% 0%, rgba(184, 29, 40, 0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.wing-card-content {
+  position: relative;
+  z-index: 5;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wing-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.wing-num-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--drac-gold-bright);
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px solid var(--drac-line-gold);
+  padding: 3px 9px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.wing-icon-badge {
+  font-size: 20px;
+  filter: drop-shadow(0 0 8px rgba(229, 185, 105, 0.4));
+}
+
+.wing-title {
+  font-family: var(--font-cinzel);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--drac-text-primary);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.wing-desc {
+  font-size: 13px;
+  color: var(--drac-text-secondary);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.wing-highlight {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--drac-gold);
+}
+
+.wing-highlight span {
+  color: var(--drac-text-muted);
+}
+
+.craft-card h3 {
+  font-family: var(--font-cinzel);
+  font-size: 15px;
+  color: var(--drac-text-primary);
+  margin-bottom: 6px;
+}
+
+.craft-card p {
+  font-size: 12px;
+  color: var(--drac-text-muted);
+  line-height: 1.6;
+}
+
+/* ========================================================
+   CURATED THEATRICAL PORTFOLIO (PRODUCTIONS)
+   Asymmetric Panels • Large Photography • Verified Credits
+   ======================================================== */
+.portfolio-section {
+  padding: 80px 48px;
+  border-bottom: 1px solid var(--drac-line);
+  background: var(--drac-bg);
+}
+
+.portfolio-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.portfolio-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+/* Hero Featured Production (Yamraj Ki Adalat) */
+.featured-prod-hero {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  background: #130e18;
+  border: 1px solid var(--drac-line);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: var(--transition-cinematic);
+  cursor: pointer;
+  position: relative;
+}
+
+.featured-prod-hero:hover {
+  border-color: var(--drac-line-accent);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+}
+
+.featured-prod-img-wrap {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  background: #060408;
+}
+
+.featured-prod-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featured-prod-hero:hover .featured-prod-img-wrap img {
+  transform: scale(1.04);
+}
+
+.featured-prod-content {
+  padding: 44px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid var(--drac-line);
+  background: radial-gradient(circle at 10% 50%, rgba(184, 29, 40, 0.08) 0%, transparent 60%);
+}
+
+.prod-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--drac-crimson-vivid);
+  margin-bottom: 8px;
+}
+
+.featured-prod-content h3 {
+  font-family: var(--font-cinzel);
+  font-size: clamp(24px, 3vw, 34px);
+  color: var(--drac-text-primary);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.prod-award-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 2px;
+  color: var(--drac-gold-bright);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.featured-prod-content p {
+  font-size: 13.5px;
+  color: var(--drac-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+.prod-credits-list {
+  font-size: 12px;
+  color: var(--drac-text-muted);
+  font-family: var(--font-mono);
+  line-height: 1.9;
+  border-top: 1px solid var(--drac-line);
+  padding-top: 16px;
+}
+
+.prod-credits-list strong {
+  color: var(--drac-text-primary);
+}
+
+/* Secondary Production Grid */
+.prod-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.prod-card {
+  background: #130e18;
+  border: 1px solid var(--drac-line);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.45s var(--spring-bounce), box-shadow 0.45s ease, border-color 0.45s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-card:hover {
+  border-color: var(--drac-crimson);
+  transform: translateY(-8px) scale(1.02) rotate(-0.5deg);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.85), 0 0 24px rgba(217, 31, 43, 0.28);
+}
+
+.prod-card:nth-child(even):hover {
+  transform: translateY(-8px) scale(1.02) rotate(0.5deg);
+}
+
+.prod-card-img-wrap {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+  background: #08050a;
+}
+
+.prod-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.prod-card:hover .prod-card-img-wrap img {
+  transform: scale(1.05);
+}
+
+.prod-card-body {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prod-card-body h4 {
+  font-family: var(--font-cinzel);
+  font-size: 19px;
+  color: var(--drac-text-primary);
+  margin: 6px 0 10px;
+}
+
+.prod-card-body p {
+  font-size: 12.5px;
+  color: var(--drac-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ========================================================
+   CORE TEAM SECTION — EXECUTIVE LEADERSHIP
+   Secretary & Vice Secretary Only • Aspect Ratio 4:5 • Pure Theatre
+   ======================================================== */
+.team-section {
+  padding: 80px 48px;
+  border-bottom: 1px solid var(--drac-line);
+  background: var(--drac-surface);
+  position: relative;
+}
+
+.team-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.team-executive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  max-width: 960px;
+  margin: 36px auto 0;
+}
+
+.team-person-card {
+  background: linear-gradient(180deg, #17101c 0%, #0e0913 100%);
+  border: 1px solid var(--drac-line);
+  border-top: 3px solid var(--drac-gold);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-cinematic);
+  position: relative;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+}
+
+.team-person-card:hover {
+  border-color: var(--drac-gold);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 24px rgba(197, 160, 89, 0.2);
+}
+
+/* Portrait Image Container: Aspect Ratio 4:5 ensures zero distortion */
+.team-person-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  position: relative;
+  background: #060408;
+}
+
+.team-person-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  filter: contrast(1.02);
+}
+
+.team-person-card:hover .team-person-img-wrap img {
+  transform: scale(1.04);
+}
+
+/* Individual Face Framing to prevent any squishing or cutoffs */
+.person-img-prabuddha {
+  object-position: 50% 50% !important;
+}
+
+.person-img-sankalp {
+  object-position: 50% 25% !important;
+}
+
+.team-person-details {
+  padding: 24px 22px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid var(--drac-line);
+  background: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
+}
+
+.team-role-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--drac-crimson-vivid);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.team-person-name {
+  font-family: var(--font-cinzel);
+  font-size: 22px;
+  color: var(--drac-text-primary);
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.team-dept-year {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--drac-gold);
+  margin-bottom: 12px;
+}
+
+.team-person-bio {
+  font-size: 13px;
+  color: var(--drac-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.team-key-credits {
+  font-size: 11px;
+  color: var(--drac-text-muted);
+  font-family: var(--font-mono);
+  padding-top: 12px;
+  border-top: 1px solid var(--drac-line);
+  line-height: 1.6;
+}
+
+.team-key-credits strong {
+  color: var(--drac-gold-bright);
+}
+
+/* ========================================================
+   ENSEMBLE & COORDINATORS SHOWCASE
+   ======================================================== */
+.team-ensemble-banner {
+  margin-top: 56px;
+  background: linear-gradient(135deg, #130d19 0%, #0c0812 100%);
+  border: 1px solid var(--drac-line);
+  border-top: 3px solid var(--drac-crimson);
+  border-radius: 4px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  transition: transform 0.45s var(--spring-bounce), box-shadow 0.45s ease;
+}
+
+.team-ensemble-banner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85), 0 0 26px rgba(217, 31, 43, 0.2);
+}
+
+.team-ensemble-img-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  background: #060408;
+}
+
+.team-ensemble-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-ensemble-banner:hover .team-ensemble-img-wrap img {
+  transform: scale(1.03);
+}
+
+.team-ensemble-content {
+  padding: 40px 36px;
+}
+
+.team-ensemble-content .eyebrow {
+  color: var(--drac-crimson-vivid);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.team-ensemble-content h3 {
+  font-family: var(--font-cinzel);
+  font-size: clamp(22px, 2.5vw, 28px);
+  color: var(--drac-text-primary);
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.team-ensemble-content p {
+  font-size: 13.5px;
+  color: var(--drac-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.team-ensemble-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.team-ensemble-tag {
+  background: rgba(229, 185, 105, 0.1);
+  border: 1px solid var(--drac-line-gold);
+  color: var(--drac-gold);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+/* ========================================================
+   VISUAL CHRONICLE — PURE PHOTOGRAPHY THEATRE ARCHIVE
+   Zero Fake Descriptions • Pure Imagery • Cinema Lightbox
+   ======================================================== */
+.gallery-section {
+  padding: 80px 48px;
+  border-bottom: 1px solid var(--drac-line);
+  background: var(--drac-bg);
+}
+
+.gallery-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.gallery-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 28px 0 10px;
+}
+
+.gallery-filter-btn {
+  background: rgba(18, 12, 19, 0.85);
+  border: 1px solid var(--drac-line);
+  color: var(--drac-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gallery-filter-btn:hover {
+  border-color: var(--drac-gold);
+  color: var(--drac-gold-bright);
+  background: rgba(197, 160, 89, 0.12);
+}
+
+.gallery-filter-btn.active {
+  background: var(--drac-crimson);
+  border-color: var(--drac-crimson-vivid);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(217, 31, 43, 0.45);
+}
+
+.gallery-theatre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.gallery-theatre-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--drac-line);
+  background: #08050a;
+  cursor: pointer;
+  opacity: 1 !important;
+  transform: none;
+  transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.gallery-theatre-card.is-filtered-out {
+  display: none !important;
+}
+
+.gallery-theatre-card:hover {
+  border-color: var(--drac-gold);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.95), 0 0 24px rgba(197, 160, 89, 0.28);
+  z-index: 2;
+}
+
+.gallery-theatre-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  filter: contrast(1.04) brightness(0.96);
+}
+
+.gallery-theatre-card:hover img {
+  transform: scale(1.08);
+  filter: contrast(1.08) brightness(1.02);
+}
+
+.gallery-theatre-card .gallery-card-hover-cue {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(184, 29, 40, 0.2) 0%, rgba(6, 3, 5, 0.65) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-theatre-card:hover .gallery-card-hover-cue {
+  opacity: 1;
+}
+
+.gallery-theatre-card .cue-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--drac-gold-bright);
+  background: rgba(14, 8, 12, 0.92);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--drac-gold);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.85);
+  transform: translateY(6px);
+  transition: transform 0.3s ease;
+}
+
+.gallery-theatre-card:hover .cue-pill {
+  transform: translateY(0);
+}
+
+.mosaic-item:hover {
+  border-color: var(--drac-line-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
+}
+
+.mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mosaic-item:hover img {
+  transform: scale(1.06);
+}
+
+.mosaic-caption {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(8, 5, 10, 0.92) 0%, rgba(8, 5, 10, 0.3) 50%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mosaic-item:hover .mosaic-caption {
+  opacity: 1;
+}
+
+.mosaic-caption-text {
+  font-family: var(--font-cinzel);
+  font-size: 13px;
+  color: var(--drac-text-primary);
+  line-height: 1.4;
+}
+
+.mosaic-caption-text small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--drac-gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Mosaic Item Sizing */
+.col-span-8 { grid-column: span 8; height: 380px; }
+.col-span-4 { grid-column: span 4; height: 380px; }
+.col-span-4-short { grid-column: span 4; height: 280px; }
+.col-span-6 { grid-column: span 6; height: 320px; }
+
+/* ========================================================
+   ACHIEVEMENTS & MILESTONES (5X CHAMPIONS)
+   ======================================================== */
+.milestones-section {
+  padding: 72px 48px;
+  border-bottom: 1px solid var(--drac-line);
+  background: var(--drac-surface);
+}
+
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.milestone-card {
+  background: #110c15;
+  border: 1px solid var(--drac-line);
+  padding: 28px 24px;
+  border-radius: 3px;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.milestone-card:hover {
+  border-color: var(--drac-line-gold);
+  transform: translateY(-2px);
+}
+
+.milestone-medal {
+  font-size: 26px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.milestone-card h4 {
+  font-family: var(--font-cinzel);
+  font-size: 17px;
+  color: var(--drac-text-primary);
+  margin-bottom: 8px;
+}
+
+.milestone-card p {
+  font-size: 12.5px;
+  color: var(--drac-text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================================
+   CALL TO ACTION & GRAND CURTAIN CALL (PROSCENIUM STAGE)
+   ======================================================== */
+.join-banner {
+  padding: 100px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 50% 20%, rgba(184, 29, 40, 0.28) 0%, rgba(7, 4, 8, 0.88) 60%, #070408 100%),
+    linear-gradient(180deg, rgba(8, 4, 8, 0.95) 0%, rgba(20, 6, 14, 0.85) 50%, #070408 100%),
+    url('images/hero/grand-theatre.jpg') center/cover no-repeat;
+  border-top: 1px solid var(--drac-line-gold);
+  border-bottom: 2px solid var(--drac-gold);
+  box-shadow: inset 0 20px 60px rgba(0, 0, 0, 0.95), inset 0 -20px 60px rgba(0, 0, 0, 0.95);
+}
+
+.join-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--drac-gold) 25%, var(--drac-crimson-vivid) 50%, var(--drac-gold) 75%, transparent 100%);
+}
+
+.join-banner-crest {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--drac-gold-bright);
+  padding: 6px 18px;
+  background: rgba(18, 9, 16, 0.85);
+  border: 1px solid var(--drac-gold);
+  border-radius: 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8);
+}
+
+.join-banner h2 {
+  font-family: var(--font-cinzel);
+  font-size: clamp(30px, 4.8vw, 54px);
+  color: var(--drac-text-primary);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.join-banner-hindi {
+  display: inline-block;
+  font-size: clamp(14px, 1.5vw, 17px);
+  font-weight: 500;
+  color: var(--drac-gold-bright);
+  background: rgba(14, 6, 11, 0.82);
+  padding: 6px 20px;
+  border-radius: 4px;
+  border-left: 3px solid var(--drac-crimson-vivid);
+  border-right: 3px solid var(--drac-crimson-vivid);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.join-banner p {
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: #d1c7cc;
+  max-width: 680px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+}
+
+/* 4 Recruitment Wing Pillar Cards */
+.join-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1040px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+.join-pillar-item {
+  background: rgba(14, 8, 14, 0.85);
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 4px;
+  padding: 18px 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.join-pillar-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--drac-gold), var(--drac-crimson-vivid));
+  opacity: 0.6;
+}
+
+.join-pillar-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--drac-gold-bright);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.9), 0 0 20px rgba(197, 160, 89, 0.25);
+  background: rgba(22, 11, 20, 0.95);
+}
+
+.join-pillar-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.join-pillar-title {
+  font-family: var(--font-cinzel);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.join-pillar-desc {
+  font-size: 11.5px;
+  color: #b5abb2;
+  line-height: 1.6;
+}
+
+.join-banner-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.join-banner-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--drac-text-secondary);
+}
+
+.live-beacon-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
+  animation: beaconGlow 1.8s infinite;
+}
+
+@keyframes beaconGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+/* ========================================================
+   THEATRICAL GRAND FOOTER (4-COLUMN RICH PLAYBILL)
+   ======================================================== */
+.footer {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(45, 10, 22, 0.45) 0%, rgba(8, 4, 8, 0.98) 55%, #050205 100%),
+    #050205;
+  padding: 64px 48px 32px;
+  color: var(--drac-text-secondary);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--drac-line-gold);
+}
+
+.footer-top-strip {
+  text-align: center;
+  padding: 10px 20px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--drac-line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--drac-gold);
+  text-transform: uppercase;
+  background: rgba(14, 6, 12, 0.6);
+  border-radius: 2px;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--drac-line);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.footer-about p {
+  font-size: 12.5px;
+  color: #b5abb2;
+  line-height: 1.8;
+  margin-top: 14px;
+  max-width: 380px;
+}
+
+.footer-campus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  color: var(--drac-gold-bright);
+  background: rgba(20, 10, 18, 0.7);
+  padding: 6px 12px;
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 3px;
+}
+
+.footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--drac-line-gold);
+  background: rgba(18, 9, 16, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--drac-gold);
+  transition: all 0.25s ease;
+}
+
+.social-icon:hover {
+  color: #fff;
+  border-color: var(--drac-crimson-vivid);
+  background: var(--drac-crimson-vivid);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 20px rgba(217, 31, 43, 0.55);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col h5 {
+  font-family: var(--font-cinzel);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--drac-gold-bright);
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footer-col h5::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--drac-crimson-vivid);
+}
+
+.footer-wing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-wing-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.footer-wing-item:hover {
+  transform: translateX(4px);
+}
+
+.footer-wing-item .wing-icon {
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.footer-wing-item .wing-name {
+  font-size: 12.5px;
+  color: #e5dbe1;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.footer-wing-item:hover .wing-name {
+  color: var(--drac-gold-bright);
+}
+
+.footer-wing-item .wing-sub {
+  font-size: 10.5px;
+  color: #8c7f89;
+  display: block;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 12.5px;
+  color: #b5abb2;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+
+.footer-links a::before {
+  content: '›';
+  color: var(--drac-gold);
+  font-size: 14px;
+}
+
+/* Secretariat Card in Column 4 */
+.footer-secretariat-box {
+  background: rgba(16, 8, 16, 0.9);
+  border: 1px solid var(--drac-line-gold);
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+}
+
+.secretariat-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--drac-gold-bright);
+  margin-bottom: 12px;
+}
+
+.secretariat-officer {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(229, 185, 105, 0.15);
+}
+
+.secretariat-officer:last-of-type {
+  border-bottom: none;
+  margin-bottom: 14px;
+  padding-bottom: 0;
+}
+
+.officer-role {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  color: var(--drac-crimson-vivid);
+  text-transform: uppercase;
+}
+
+.officer-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.secretariat-join-btn {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #a51822 0%, #7d1119 100%);
+  color: #fff;
+  border: 1px solid var(--drac-crimson-vivid);
+  padding: 8px 14px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.secretariat-join-btn:hover {
+  background: var(--drac-crimson-vivid);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(217, 31, 43, 0.5);
+  color: #fff;
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  max-width: 1440px;
+  margin: 0 auto;
+  font-size: 11.5px;
+  color: #8c7f89;
+  font-family: var(--font-mono);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ========================================================
+   SUBPAGE & DEDICATED SECTIONS ARCHITECTURE
+   ======================================================== */
+.page-hero {
+  position: relative;
+  padding: 80px 48px 56px;
+  background-color: var(--drac-bg);
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid var(--drac-line);
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(8, 6, 11, 0.82) 0%, rgba(8, 6, 11, 0.95) 100%),
+    radial-gradient(ellipse at 50% 20%, rgba(217, 31, 43, 0.12) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Subpage Theatrical Hero Backgrounds */
+.page-hero.bg-theatre {
+  background-image: url('images/hero/grand-theatre.jpg');
+}
+.page-hero.bg-stage {
+  background-image: url('images/hero/stage-banner.jpg');
+}
+.page-hero.bg-cinema {
+  background-image: url('images/hero/cinema-bg.webp');
+}
+.page-hero.bg-events {
+  background-image: url('images/hero/50939e9a-6bd7-4464-b63c-d74ac0a764f6.jpg');
+}
+.page-hero.bg-gallery {
+  background-image: url('images/hero/8ce85d51-8475-403e-9807-4c2df10b158e.jpg');
+}
+.page-hero.bg-join {
+  background-image: url('images/hero/b57f4685-6108-4a71-a0fe-9a247717fcbe.jpg');
+}
+
+.breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--drac-text-muted);
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--drac-text-secondary);
+}
+
+.breadcrumb a:hover {
+  color: var(--drac-gold);
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+  color: var(--drac-line-accent);
+}
+
+.page-hero h1 {
+  font-family: var(--font-cinzel);
+  font-size: clamp(32px, 4.5vw, 52px);
+  color: var(--drac-text-primary);
+  margin-bottom: 16px;
+  font-weight: 800;
+}
+
+.page-hero h1 span {
+  color: var(--drac-crimson-vivid);
+}
+
+.page-hero p.lead {
+  font-size: clamp(14px, 1.8vw, 17px);
+  color: var(--drac-text-secondary);
+  max-width: 780px;
+  line-height: 1.8;
+}
+
+.subpage-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px 48px;
+}
+
+/* ========================================================
+   OFFICIAL PLAYBILL THEATRICAL SCHEDULE TABLE & CARDS
+   Exact 9-Item Repertoire Schedule
+   ======================================================== */
+.playbill-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 32px;
+  border: 1px solid var(--drac-line);
+  background: #0f0a15;
+  border-radius: 4px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+}
+
+.playbill-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.playbill-table th {
+  background: #160e1d;
+  color: var(--drac-gold);
+  font-family: var(--font-cinzel);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 24px;
+  border-bottom: 2px solid var(--drac-line-gold);
+  white-space: nowrap;
+}
+
+.playbill-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+  vertical-align: middle;
+  transition: background 0.25s ease;
+}
+
+.playbill-table tr:hover td {
+  background: rgba(217, 31, 43, 0.07);
+}
+
+.playbill-table tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-sno {
+  font-family: var(--font-cinzel);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--drac-gold);
+  width: 65px;
+}
+
+.schedule-event-title {
+  font-family: var(--font-cinzel);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--drac-text-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.schedule-event-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  color: var(--drac-crimson-vivid);
+  text-transform: uppercase;
+}
+
+.schedule-date {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--drac-gold);
+  white-space: nowrap;
+}
+
+.schedule-status-pill {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(217, 31, 43, 0.15);
+  border: 1px solid rgba(217, 31, 43, 0.4);
+  color: var(--drac-crimson-vivid);
+  white-space: nowrap;
+}
+
+.schedule-status-pill.gold {
+  background: rgba(229, 185, 105, 0.15);
+  border-color: rgba(229, 185, 105, 0.4);
+  color: var(--drac-gold);
+}
+
+.schedule-status-pill.muted {
+  background: rgba(140, 128, 135, 0.12);
+  border-color: rgba(140, 128, 135, 0.3);
+  color: var(--drac-text-secondary);
+}
+
+/* Mobile Responsive Cards for Schedule */
+.playbill-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.playbill-card {
+  background: #110c16;
+  border: 1px solid var(--drac-line);
+  border-left: 4px solid var(--drac-gold);
+  padding: 22px 24px;
+  border-radius: 4px;
+  position: relative;
+  transition: transform 0.35s var(--spring-bounce), box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+}
+
+.playbill-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -9px;
+  width: 18px;
+  height: 18px;
+  background: var(--drac-bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  border-left: 1px solid var(--drac-line);
+}
+
+.playbill-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  background: var(--drac-bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  border-right: 1px solid var(--drac-line);
+}
+
+.playbill-card:hover {
+  transform: translateY(-5px) scale(1.015);
+  border-color: var(--drac-crimson);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.85), 0 0 22px rgba(217, 31, 43, 0.22);
+}
+
+.playbill-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.playbill-card-sno {
+  font-family: var(--font-cinzel);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--drac-gold);
+}
+
+.playbill-card-title {
+  font-family: var(--font-cinzel);
+  font-size: 16px;
+  color: var(--drac-text-primary);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+.playbill-card-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--drac-gold);
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .playbill-table-wrap {
+    display: none;
+  }
+  .playbill-mobile-cards {
+    display: flex;
+  }
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border: 1px solid var(--drac-line);
+  background: var(--drac-surface-card);
+  color: var(--drac-text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.filter-btn:hover {
+  color: #fff;
+  border-color: var(--drac-line-accent);
+}
+
+.filter-btn.active {
+  background: var(--drac-crimson);
+  border-color: var(--drac-crimson-vivid);
+  color: #fff;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.faq-item {
+  background: #110c15;
+  border: 1px solid var(--drac-line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 20px 24px;
+  font-family: var(--font-cinzel);
+  font-size: 16px;
+  color: var(--drac-text-primary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.faq-question::after {
+  content: '+';
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--drac-gold);
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-question::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 24px 22px;
+  font-size: 13.5px;
+  color: var(--drac-text-secondary);
+  line-height: 1.8;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 16px;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+/* ========================================================
+   MODALS: LIGHTBOX & PRODUCTION DOSSIER
+   ======================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  background: rgba(4, 2, 5, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-box {
+  background: #130d17;
+  border: 1px solid var(--drac-line-accent);
+  border-radius: 4px;
+  max-width: 780px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
+  padding: 36px;
+  transform: scale(0.92) translateY(24px);
+  transition: transform 0.45s var(--spring-bounce);
+}
+
+.modal-overlay.active .modal-box {
+  transform: scale(1) translateY(0);
+}
+
+/* ========================================================
+   THEATRICAL SCROLL REVEAL ENGINE
+   Dramatic curtain-rise easing with hardware acceleration
+   ======================================================== */
+.theatre-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.theatre-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Stagger reveals for children - Never hide gallery cards or elements past 6 */
+.theatre-reveal-stagger > *:not(.gallery-theatre-card) {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theatre-reveal-stagger.is-visible > * {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.theatre-reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.04s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.08s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.12s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.16s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.20s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.24s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.28s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 0.32s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(9) { transition-delay: 0.36s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(10) { transition-delay: 0.40s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(11) { transition-delay: 0.44s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(12) { transition-delay: 0.48s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(13) { transition-delay: 0.52s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(14) { transition-delay: 0.56s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(15) { transition-delay: 0.60s; }
+.theatre-reveal-stagger.is-visible > *:nth-child(16) { transition-delay: 0.64s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theatre-reveal, .theatre-reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ========================================================
+   FLOATING STAGE CUE BUTTON (BACK TO TOP)
+   ======================================================== */
+.stage-cue-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  background: rgba(14, 11, 17, 0.94);
+  border: 1px solid var(--drac-line-gold);
+  color: var(--drac-gold);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+  transition: all 0.4s var(--spring-bounce);
+}
+
+.stage-cue-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.stage-cue-btn:hover {
+  background: var(--drac-crimson);
+  color: #fff;
+  border-color: var(--drac-crimson-vivid);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 34px rgba(217, 31, 43, 0.45);
+}
+
+.stage-cue-btn .cue-arrow {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+
+.stage-cue-btn:hover .cue-arrow {
+  transform: translateY(-2px);
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 24px;
+  color: var(--drac-text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--drac-crimson-vivid);
+}
+
+/* ========================================================
+   CINEMA THEATRICAL LIGHTBOX VIEWER (ROCK SOLID • ZERO GLITCHES)
+   ======================================================== */
+.lightbox-content,
+.lightbox-stage-portal {
+  max-width: min(1100px, 94vw);
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 100000;
+  margin: auto;
+  gap: 12px;
+}
+
+.lightbox-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  max-width: 100%;
+}
+
+.lightbox-frame img,
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 2px solid var(--drac-gold);
+  border-radius: 4px;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.98), 0 0 40px rgba(217, 31, 43, 0.35);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  will-change: opacity, transform;
+}
+
+/* Gold Theatrical Loading Spinner */
+.lightbox-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 6, 12, 0.85);
+  border-radius: 4px;
+  z-index: 10;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-spinner.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.theatre-spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(229, 185, 105, 0.2);
+  border-top-color: var(--drac-gold-bright);
+  border-right-color: var(--drac-crimson-vivid);
+  border-radius: 50%;
+  animation: theatreSpin 0.85s linear infinite;
+}
+
+@keyframes theatreSpin {
+  to { transform: rotate(360deg); }
+}
+
+.lightbox-spinner span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--drac-gold-bright);
+}
+
+/* Lightbox Caption Bar */
+.lightbox-caption-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.lightbox-caption-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(16, 9, 18, 0.95);
+  border: 1px solid var(--drac-line-gold);
+  padding: 8px 24px;
+  border-radius: 30px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8);
+  font-family: var(--font-mono);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lightbox-counter {
+  color: var(--drac-gold-bright);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.lightbox-society {
+  color: var(--drac-text-primary);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.lightbox-cue {
+  color: var(--drac-crimson-vivid);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Lightbox Filmstrip Thumbnail Strip */
+.lightbox-thumbnails {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  max-width: 90vw;
+  padding: 6px 12px;
+  background: rgba(10, 6, 12, 0.85);
+  border: 1px solid var(--drac-line);
+  border-radius: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--drac-gold) transparent;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar-thumb {
+  background: var(--drac-gold);
+  border-radius: 2px;
+}
+
+.lightbox-thumb-btn {
+  flex-shrink: 0;
+  width: 52px;
+  height: 38px;
+  border-radius: 3px;
+  border: 1.5px solid transparent;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: all 0.2s ease;
+}
+
+.lightbox-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lightbox-thumb-btn:hover {
+  opacity: 0.9;
+  border-color: var(--drac-gold);
+  transform: translateY(-2px);
+}
+
+.lightbox-thumb-btn.active {
+  opacity: 1;
+  border-color: var(--drac-gold-bright);
+  box-shadow: 0 0 12px rgba(229, 185, 105, 0.7);
+  transform: scale(1.08);
+}
+
+.lightbox-nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(18, 10, 16, 0.92);
+  border: 1px solid var(--drac-gold);
+  color: var(--drac-gold-bright);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 100001;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--drac-crimson-vivid);
+  border-color: var(--drac-crimson-vivid);
+  color: #fff;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 0 30px rgba(217, 31, 43, 0.8);
+}
+
+.lightbox-prev { left: clamp(14px, 3.5vw, 44px); }
+.lightbox-next { right: clamp(14px, 3.5vw, 44px); }
+
+#lightboxClose {
+  position: fixed;
+  top: clamp(16px, 3vw, 30px);
+  right: clamp(16px, 3vw, 34px);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(20, 8, 16, 0.92);
+  border: 1px solid var(--drac-gold);
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100002;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.9);
+}
+
+#lightboxClose:hover {
+  background: var(--drac-crimson-vivid);
+  border-color: var(--drac-crimson-vivid);
+  color: #fff;
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Notice / Toast */
+.notice {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #190f1d;
+  border: 1px solid var(--drac-crimson);
+  color: var(--drac-text-primary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 12px 20px;
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+  transform: translateY(120%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 10000;
+}
+
+.notice.show {
+  transform: translateY(0);
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN (DESKTOP, LAPTOP, TABLET, MOBILE)
+   ======================================================== */
+@media (max-width: 1200px) {
+  .team-executive-grid {
+    gap: 24px;
+  }
+  .gallery-theatre-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .royal-about-split {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .royal-about-showcase {
+    padding: 72px 24px;
+  }
+  .topbar {
+    padding: 16px 24px;
+  }
+  .hero-copy {
+    padding: 60px 24px;
+  }
+  .about-inner {
+    grid-template-columns: 1fr;
+  }
+  .about-editorial {
+    padding: 56px 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--drac-line);
+  }
+  .about-craft-panel {
+    padding: 56px 24px;
+  }
+  .featured-prod-hero {
+    grid-template-columns: 1fr;
+  }
+  .featured-prod-content {
+    border-left: none;
+    border-top: 1px solid var(--drac-line);
+    padding: 32px 24px;
+  }
+  .featured-prod-img-wrap {
+    height: 300px;
+  }
+  .team-executive-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+  .gallery-theatre-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .join-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .join-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-badge-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .royal-wings-grid {
+    grid-template-columns: 1fr;
+  }
+  .menu {
+    display: block;
+  }
+  .nav {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: #0d0a11;
+    border-bottom: 1px solid var(--drac-line);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 28px;
+    gap: 18px;
+    transform: translateY(-110%);
+    transition: transform 0.35s ease;
+    z-index: 999;
+  }
+  .nav.open {
+    transform: translateY(0);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.9);
+  }
+  .hero {
+    min-height: 75vh;
+  }
+  .hero-copy {
+    padding: 48px 20px;
+  }
+  .hero-badge-row {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .craft-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-executive-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-theatre-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .portfolio-section,
+  .team-section,
+  .gallery-section,
+  .milestones-section,
+  .subpage-container,
+  .page-hero {
+    padding: 48px 20px;
+  }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+  .hero .hero-sub {
+    font-size: 14.5px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .team-person-img-wrap {
+    aspect-ratio: 4 / 5;
+  }
+  .gallery-theatre-grid {
+    grid-template-columns: 1fr;
+  }
+  .join-banner {
+    padding: 60px 20px;
+  }
+  .copyright {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
