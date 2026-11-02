@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Complete archive of the 16 authentic club photographs
   const galleryPhotos = [
     'images/gallery/photo-01.jpg',
-    'images/gallery/photo-02.jpg',
+    'images/gallery/photo-02.jpg?v=20261102k',
     'images/gallery/photo-03.jpg',
     'images/gallery/photo-04.jpg',
     'images/gallery/photo-05.jpg',
@@ -492,11 +492,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'images/gallery/photo-09.jpg',
     'images/gallery/photo-10.jpg',
     'images/gallery/photo-11.jpg',
-    'images/gallery/photo-12.jpg',
+    'images/gallery/photo-12.jpg?v=20261102k',
     'images/gallery/photo-13.jpg',
     'images/gallery/photo-14.jpg',
     'images/gallery/photo-15.jpg',
-    'images/gallery/photo-16.jpg'
+    'images/gallery/photo-16.jpg?v=20261102k'
   ];
 
   // Preload all 16 authentic photos into browser cache in the background
