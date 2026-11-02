@@ -499,6 +499,74 @@ document.addEventListener('DOMContentLoaded', () => {
     'images/gallery/photo-16.jpg?v=20261102k'
   ];
 
+  // Official verified descriptions for all 16 archival stills
+  const GALLERY_STILLS = [
+    {
+      title: "IIT Roorkee Act",
+      desc: "A glimpse of DRACULA's theatrical performance at IIT Roorkee."
+    },
+    {
+      title: "OJAS",
+      desc: "A memorable moment from our cultural participation at OJAS."
+    },
+    {
+      title: "IIT Roorkee — DRACULA Nukkad Team",
+      desc: "The DRACULA team representing its street theatre spirit at IIT Roorkee."
+    },
+    {
+      title: "A Moment of Appreciation",
+      desc: "A proud moment as the SRMCEM Director appreciates DRACULA's performance."
+    },
+    {
+      title: "Mai Toh Girdhar Ki — Meera & Krishna",
+      desc: "A beautiful theatrical portrayal of Meera Bai's unconditional love and devotion towards Lord Krishna."
+    },
+    {
+      title: "Sita Swayamvar",
+      desc: "A glimpse into DRACULA's mythological stage production."
+    },
+    {
+      title: "Celebrating Victory — Team DRACULA",
+      desc: "The team celebrating a memorable achievement together."
+    },
+    {
+      title: "The Divine Krishna",
+      desc: "A glimpse of an actor portraying Lord Krishna in our stage production."
+    },
+    {
+      title: "Ad-Mad Show — A Moment of Recognition",
+      desc: "Mayur receiving a certificate during the Ad-Mad Show."
+    },
+    {
+      title: "Sita Swayamvar — On Stage",
+      desc: "A memorable scene from our theatrical presentation of Sita Swayamvar."
+    },
+    {
+      title: "Beyond the Stage — Unforgettable Moments",
+      desc: "A collection of memories, experiences, and moments that define DRACULA."
+    },
+    {
+      title: "DRACULA Alumni — IIT Kanpur",
+      desc: "Our alumni representing DRACULA at IIT Kanpur through Nukkad Natak."
+    },
+    {
+      title: "Yamraj Ki Adalat — The Cast",
+      desc: "The cast behind one of DRACULA's memorable stage productions."
+    },
+    {
+      title: "The DRACULA Family",
+      desc: "A photograph capturing the unity, energy, and spirit of Team DRACULA."
+    },
+    {
+      title: "IIT Kanpur — DRACULA Nukkad Team",
+      desc: "Our Nukkad Natak team representing DRACULA at IIT Kanpur."
+    },
+    {
+      title: "The Neta Ji — Character Performance",
+      desc: "Mayur portraying the character of Netaji in a DRACULA theatrical production."
+    }
+  ];
+
   // Preload all 16 authentic photos into browser cache in the background
   function preloadAllGalleryPhotos() {
     galleryPhotos.forEach((src) => {
@@ -590,11 +658,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxCaption) {
       const currentNum = String(currentPhotoIndex + 1).padStart(2, '0');
       const totalNum = String(galleryPhotos.length).padStart(2, '0');
+      const still = GALLERY_STILLS[currentPhotoIndex] || {
+        title: "DRACULA THEATRICAL ARCHIVE",
+        desc: "Where Stories Come Alive • SRMCEM"
+      };
       lightboxCaption.innerHTML = `
         <div class="lightbox-caption-pill">
           <span class="lightbox-counter">[ STILL ${currentNum} / ${totalNum} ]</span>
-          <span class="lightbox-society">DRACULA THEATRICAL ARCHIVE &bull; SRMCEM</span>
-          <span class="lightbox-cue">Pure Authentic Photography</span>
+          <span class="lightbox-society">${still.title}</span>
+          <span class="lightbox-cue">${still.desc}</span>
         </div>
       `;
     }
@@ -775,12 +847,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (spotlightFrameCounter) {
         spotlightFrameCounter.textContent = `STILL ${String(spotlightIndex + 1).padStart(2, '0')} / ${String(galleryPhotos.length).padStart(2, '0')}`;
       }
+      const still = GALLERY_STILLS[spotlightIndex] || {
+        title: "DRACULA Theatrical Archive",
+        desc: "Where Stories Come Alive • SRMCEM"
+      };
       if (spotlightHudTitle) {
-        spotlightHudTitle.textContent = `Theatrical Visual Archive • Still ${String(spotlightIndex + 1).padStart(2, '0')} of ${String(galleryPhotos.length).padStart(2, '0')}`;
+        spotlightHudTitle.textContent = still.title;
       }
       const spotlightHudSub = document.getElementById('spotlightHudSub');
       if (spotlightHudSub) {
-        spotlightHudSub.textContent = 'Where Stories Come Alive • Pure Authentic Photography • SRMCEM';
+        spotlightHudSub.textContent = still.desc;
       }
 
       // Update active thumbnail in filmstrip
