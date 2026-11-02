@@ -702,27 +702,216 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Gallery Category Filter Engine
-  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryCards = document.querySelectorAll('.gallery-theatre-card');
+  // ----------------------------------------------------
+  // DYNAMIC PROSCENIUM GALLERY SPOTLIGHT & FILMSTRIP ENGINE
+  // ----------------------------------------------------
+  const spotlightHeroFrame = document.getElementById('spotlightHeroFrame');
+  const spotlightHeroImg = document.getElementById('spotlightHeroImg');
+  const spotlightProgressBar = document.getElementById('spotlightProgressBar');
+  const spotlightFrameCounter = document.getElementById('spotlightFrameCounter');
+  const spotlightHudTitle = document.getElementById('spotlightHudTitle');
+  const spotlightPrevBtn = document.getElementById('spotlightPrevBtn');
+  const spotlightNextBtn = document.getElementById('spotlightNextBtn');
+  const spotlightPlayToggleBtn = document.getElementById('spotlightPlayToggleBtn');
+  const spotlightPlayIcon = document.getElementById('spotlightPlayIcon');
+  const spotlightPlayText = document.getElementById('spotlightPlayText');
+  const spotlightShuffleBtn = document.getElementById('spotlightShuffleBtn');
+  const spotlightFilmstripTrack = document.getElementById('spotlightFilmstripTrack');
+  const spotlightExpandBtn = document.getElementById('spotlightExpandBtn');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      playTheatricalClick();
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  if (spotlightHeroImg && typeof galleryPhotos !== 'undefined' && galleryPhotos.length > 0) {
+    let spotlightIndex = 0;
+    let isAutoplayActive = true;
+    let spotlightTimer = null;
+    const SLIDE_DURATION = 4200;
 
-      const filter = btn.getAttribute('data-filter');
-      galleryCards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          card.classList.remove('is-filtered-out');
-        } else {
-          card.classList.add('is-filtered-out');
-        }
+    const stillTitles = [
+      "The Proscenium Awakening & Courtroom Drama",
+      "High-Tension Dramatic Soliloquy & Expressions",
+      "The Climax Confrontation & Auditorium Spotlight",
+      "High-Energy Nukkad Natak Circle on Campus",
+      "Street Play Voice Chorus & Social Awakening",
+      "Proscenium Light Choreography & Divine Surrender",
+      "Satirical Verse & Live Street Play Monologues",
+      "Rhythmic Footwork & Crowd Encirclement",
+      "Theatrical Set Design & Character Depth",
+      "Live Street Play Percussion & Dholak Beats",
+      "Mythological Staging & Ancient Dialogue",
+      "Raw Campus Theatre Circle & Student Energy",
+      "Classical Devotion & Celestial Proscenium Glow",
+      "Festival Street Play Delegation & Satire",
+      "The Complete DRACULA Ensemble Curtain Call",
+      "Celebration of Theatrical Brotherhood & Legacy"
+    ];
+
+    // Build filmstrip thumbnails
+    if (spotlightFilmstripTrack) {
+      spotlightFilmstripTrack.innerHTML = '';
+      galleryPhotos.forEach((src, idx) => {
+        const thumb = document.createElement('button');
+        thumb.className = `spotlight-strip-thumb ${idx === 0 ? 'active' : ''}`;
+        thumb.setAttribute('type', 'button');
+        thumb.setAttribute('aria-label', `Spotlight Still ${idx + 1}`);
+        thumb.innerHTML = `
+          <img src="${src}" alt="Still ${idx + 1}" loading="lazy">
+          <span class="thumb-index-tag">${String(idx + 1).padStart(2, '0')}</span>
+        `;
+        thumb.addEventListener('click', (e) => {
+          e.stopPropagation();
+          playTheatricalClick();
+          setSpotlightIndex(idx, true);
+        });
+        spotlightFilmstripTrack.appendChild(thumb);
       });
-    });
-  });
+    }
+
+    function setSpotlightIndex(index, userTriggered = false) {
+      spotlightIndex = (index + galleryPhotos.length) % galleryPhotos.length;
+
+      // Update hero image with smooth crossfade
+      spotlightHeroImg.style.opacity = '0.15';
+      spotlightHeroImg.style.transform = 'scale(0.98)';
+
+      setTimeout(() => {
+        spotlightHeroImg.src = galleryPhotos[spotlightIndex];
+        spotlightHeroImg.onload = () => {
+          spotlightHeroImg.style.opacity = '1';
+          spotlightHeroImg.style.transform = 'scale(1)';
+        };
+        if (spotlightHeroImg.complete) {
+          spotlightHeroImg.style.opacity = '1';
+          spotlightHeroImg.style.transform = 'scale(1)';
+        }
+      }, 100);
+
+      // Update counter and title
+      if (spotlightFrameCounter) {
+        spotlightFrameCounter.textContent = `STILL ${String(spotlightIndex + 1).padStart(2, '0')} / ${String(galleryPhotos.length).padStart(2, '0')}`;
+      }
+      if (spotlightHudTitle) {
+        spotlightHudTitle.textContent = stillTitles[spotlightIndex] || `DRACULA Archival Photograph ${spotlightIndex + 1}`;
+      }
+
+      // Update active thumbnail in filmstrip
+      if (spotlightFilmstripTrack) {
+        const thumbs = spotlightFilmstripTrack.querySelectorAll('.spotlight-strip-thumb');
+        thumbs.forEach((t, i) => {
+          if (i === spotlightIndex) {
+            t.classList.add('active');
+            t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          } else {
+            t.classList.remove('active');
+          }
+        });
+      }
+
+      resetProgressBar();
+
+      if (userTriggered && isAutoplayActive) {
+        restartAutoplayTimer();
+      }
+    }
+
+    function resetProgressBar() {
+      if (!spotlightProgressBar) return;
+      spotlightProgressBar.style.transition = 'none';
+      spotlightProgressBar.style.width = '0%';
+      void spotlightProgressBar.offsetWidth;
+      if (isAutoplayActive) {
+        spotlightProgressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+        spotlightProgressBar.style.width = '100%';
+      }
+    }
+
+    function restartAutoplayTimer() {
+      if (spotlightTimer) clearInterval(spotlightTimer);
+      resetProgressBar();
+      if (!isAutoplayActive) return;
+      spotlightTimer = setInterval(() => {
+        setSpotlightIndex(spotlightIndex + 1, false);
+      }, SLIDE_DURATION);
+    }
+
+    function toggleAutoplay() {
+      playTheatricalClick();
+      isAutoplayActive = !isAutoplayActive;
+      if (isAutoplayActive) {
+        if (spotlightPlayIcon) spotlightPlayIcon.textContent = '❚❚';
+        if (spotlightPlayText) spotlightPlayText.textContent = 'PAUSE';
+        if (spotlightPlayToggleBtn) spotlightPlayToggleBtn.classList.remove('paused');
+        restartAutoplayTimer();
+      } else {
+        if (spotlightPlayIcon) spotlightPlayIcon.textContent = '▶';
+        if (spotlightPlayText) spotlightPlayText.textContent = 'PLAY';
+        if (spotlightPlayToggleBtn) spotlightPlayToggleBtn.classList.add('paused');
+        if (spotlightTimer) clearInterval(spotlightTimer);
+        if (spotlightProgressBar) {
+          spotlightProgressBar.style.transition = 'none';
+          spotlightProgressBar.style.width = '0%';
+        }
+      }
+    }
+
+    if (spotlightPrevBtn) {
+      spotlightPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playTheatricalClick();
+        setSpotlightIndex(spotlightIndex - 1, true);
+      });
+    }
+
+    if (spotlightNextBtn) {
+      spotlightNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playTheatricalClick();
+        setSpotlightIndex(spotlightIndex + 1, true);
+      });
+    }
+
+    if (spotlightPlayToggleBtn) {
+      spotlightPlayToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleAutoplay();
+      });
+    }
+
+    if (spotlightShuffleBtn) {
+      spotlightShuffleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playTheatricalClick();
+        let nextRandom;
+        do {
+          nextRandom = Math.floor(Math.random() * galleryPhotos.length);
+        } while (nextRandom === spotlightIndex && galleryPhotos.length > 1);
+
+        if (spotlightHeroFrame) {
+          spotlightHeroFrame.classList.add('spotlight-flash');
+          setTimeout(() => {
+            if (spotlightHeroFrame) spotlightHeroFrame.classList.remove('spotlight-flash');
+          }, 380);
+        }
+        setSpotlightIndex(nextRandom, true);
+      });
+    }
+
+    if (spotlightExpandBtn) {
+      spotlightExpandBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playTheatricalClick();
+        window.openLightbox(spotlightIndex);
+      });
+    }
+
+    if (spotlightHeroFrame) {
+      spotlightHeroFrame.addEventListener('click', () => {
+        playTheatricalClick();
+        window.openLightbox(spotlightIndex);
+      });
+    }
+
+    setSpotlightIndex(0);
+    restartAutoplayTimer();
+  }
 
   // ----------------------------------------------------
   // 8. PRODUCTION DOSSIER MODAL
