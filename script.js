@@ -1271,6 +1271,87 @@ document.addEventListener('DOMContentLoaded', () => {
       alumniTrack.scrollBy({ left: 220, behavior: 'smooth' });
     });
   }
-
   initNumberCounters();
+
+  // 18. EVENTS PAGE DYNAMIC COUNTDOWN & CATEGORY FILTERING
+  function initEventsPageDynamics() {
+    // A. Live Countdown Timer to Republic Day Special Act (26 Jan 2027 09:00:00)
+    const countdownWrap = document.getElementById('eventLiveCountdown');
+    const evDays = document.getElementById('evDays');
+    const evHours = document.getElementById('evHours');
+    const evMins = document.getElementById('evMins');
+    const evSecs = document.getElementById('evSecs');
+
+    if (countdownWrap && evDays && evHours && evMins && evSecs) {
+      const targetDate = new Date('2027-01-26T09:00:00').getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          evDays.textContent = days < 10 ? '0' + days : days;
+          evHours.textContent = hours < 10 ? '0' + hours : hours;
+          evMins.textContent = minutes < 10 ? '0' + minutes : minutes;
+          evSecs.textContent = seconds < 10 ? '0' + seconds : seconds;
+        } else {
+          evDays.textContent = '00';
+          evHours.textContent = '00';
+          evMins.textContent = '00';
+          evSecs.textContent = '00';
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    // B. Interactive Category Filter Pills
+    const filterPills = document.querySelectorAll('.events-filter-pill');
+    const tableRows = document.querySelectorAll('.event-schedule-row');
+    const mobileCards = document.querySelectorAll('.playbill-mobile-cards .playbill-card');
+
+    if (filterPills.length > 0) {
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const filterValue = pill.getAttribute('data-filter');
+
+          // Update active state
+          filterPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+
+          // Filter desktop table rows
+          tableRows.forEach(row => {
+            const categories = (row.getAttribute('data-category') || '').split(' ');
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+              row.classList.remove('is-hidden');
+              row.classList.add('is-filtered-in');
+            } else {
+              row.classList.add('is-hidden');
+              row.classList.remove('is-filtered-in');
+            }
+          });
+
+          // Filter mobile cards
+          mobileCards.forEach(card => {
+            const categories = (card.getAttribute('data-category') || '').split(' ');
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+              card.classList.remove('is-hidden');
+              card.classList.add('is-filtered-in');
+            } else {
+              card.classList.add('is-hidden');
+              card.classList.remove('is-filtered-in');
+            }
+          });
+        });
+      });
+    }
+  }
+
+  initEventsPageDynamics();
 });

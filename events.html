@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shows &amp; Showcases — DRACULA Dramatic &amp; Cultural Association | SRMCEM</title>
   <meta name="description" content="Official schedule of upcoming productions, collegiate fests, and workshops by DRACULA Dramatic & Cultural Association, SRMCEM Lucknow.">
-  <link rel="stylesheet" href="style.css?v=20261102f">
+  <link rel="stylesheet" href="style.css?v=20261102g">
   <link rel="icon" type="image/png" href="images/logo/dracula-logo.png">
 </head>
 <body>
@@ -69,11 +69,25 @@
 
       <!-- EVENTS SECTION -->
       <section class="subpage-container theatre-reveal">
-        <div class="next-show-banner">
+                <div class="next-show-banner">
           <div class="next-show-pulse"></div>
           <span class="next-show-label">NEXT CURTAIN CALL:</span>
           <strong>Republic Day Special Act</strong>
           <span class="next-show-date">&bull; 26 January 2027</span>
+          <span class="next-show-countdown" id="eventLiveCountdown" title="Live curtain call countdown">
+            <span class="cd-item"><span id="evDays">--</span>d</span> :
+            <span class="cd-item"><span id="evHours">--</span>h</span> :
+            <span class="cd-item"><span id="evMins">--</span>m</span> :
+            <span class="cd-item cd-sec"><span id="evSecs">--</span>s</span>
+          </span>
+        </div>
+
+        <!-- DYNAMIC REPERTOIRE CATEGORY FILTER PILLS -->
+        <div class="events-filter-bar" role="tablist" aria-label="Filter events by category">
+          <button class="events-filter-pill active" data-filter="all">All Events (9)</button>
+          <button class="events-filter-pill" data-filter="stage">&#127917; Stage Plays (6)</button>
+          <button class="events-filter-pill" data-filter="nukkad">&#128226; Nukkad Natak (2)</button>
+          <button class="events-filter-pill" data-filter="fest">&#127942; Fests &amp; Competitions (5)</button>
         </div>
 
         <div class="section-head">
@@ -95,7 +109,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-category="stage" class="event-schedule-row highlight-upcoming">
                 <td class="schedule-sno">01</td>
                 <td>
                   <span class="schedule-event-title">Republic Day Special Act</span>
@@ -103,7 +117,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">26 January 2027</td>
               </tr>
-              <tr>
+              <tr data-category="nukkad fest" class="event-schedule-row">
                 <td class="schedule-sno">02</td>
                 <td>
                   <span class="schedule-event-title">Nukkad Natak &ndash; Abhivyakti 2K27</span>
@@ -111,7 +125,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">February 2027</td>
               </tr>
-              <tr>
+              <tr data-category="stage fest" class="event-schedule-row">
                 <td class="schedule-sno">03</td>
                 <td>
                   <span class="schedule-event-title">Inaugural Funny Stage Play &ndash; Abhivyakti 2K27</span>
@@ -119,7 +133,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">February 2027</td>
               </tr>
-              <tr>
+              <tr data-category="stage fest" class="event-schedule-row">
                 <td class="schedule-sno">04</td>
                 <td>
                   <span class="schedule-event-title">Mythological Stage Play (Serious Production) &ndash; Abhivyakti 2K27</span>
@@ -127,7 +141,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">February 2027</td>
               </tr>
-              <tr>
+              <tr data-category="stage fest" class="event-schedule-row">
                 <td class="schedule-sno">05</td>
                 <td>
                   <span class="schedule-event-title">Final Year Special Act &ndash; Abhivyakti 2K27</span>
@@ -135,7 +149,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">February 2027</td>
               </tr>
-              <tr>
+              <tr data-category="stage" class="event-schedule-row">
                 <td class="schedule-sno">06</td>
                 <td>
                   <span class="schedule-event-title">Orientation Act</span>
@@ -143,7 +157,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">August&ndash;September</td>
               </tr>
-              <tr>
+              <tr data-category="stage" class="event-schedule-row">
                 <td class="schedule-sno">07</td>
                 <td>
                   <span class="schedule-event-title">Independence Day Special Act &#127470;&#127475;</span>
@@ -151,7 +165,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">15 August</td>
               </tr>
-              <tr>
+              <tr data-category="fest" class="event-schedule-row">
                 <td class="schedule-sno">08</td>
                 <td>
                   <span class="schedule-event-title">Inter-College Competitions</span>
@@ -159,7 +173,7 @@
                 </td>
                 <td class="schedule-date" style="text-align:right;">Throughout the Year</td>
               </tr>
-              <tr>
+              <tr data-category="nukkad fest" class="event-schedule-row">
                 <td class="schedule-sno">09</td>
                 <td>
                   <span class="schedule-event-title">Antaragni, IIT Kanpur &ndash; Nukkad Natak</span>
@@ -173,7 +187,7 @@
 
         <!-- RESPONSIVE CARDS FOR MOBILE -->
         <div class="playbill-mobile-cards">
-          <div class="playbill-card">
+          <div class="playbill-card highlight-upcoming" data-category="stage">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">01</span>
             </div>
@@ -182,7 +196,7 @@
             <div class="playbill-card-date">🗓 26 January 2027</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="nukkad fest">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">02</span>
             </div>
@@ -191,7 +205,7 @@
             <div class="playbill-card-date">🗓 February 2027</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="stage fest">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">03</span>
             </div>
@@ -200,7 +214,7 @@
             <div class="playbill-card-date">🗓 February 2027</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="stage fest">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">04</span>
             </div>
@@ -209,7 +223,7 @@
             <div class="playbill-card-date">🗓 February 2027</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="stage fest">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">05</span>
             </div>
@@ -218,7 +232,7 @@
             <div class="playbill-card-date">🗓 February 2027</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="stage">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">06</span>
             </div>
@@ -227,7 +241,7 @@
             <div class="playbill-card-date">🗓 August&ndash;September</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="stage">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">07</span>
             </div>
@@ -236,7 +250,7 @@
             <div class="playbill-card-date">🗓 15 August</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="fest">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">08</span>
             </div>
@@ -245,7 +259,7 @@
             <div class="playbill-card-date">🗓 Throughout the Year</div>
           </div>
 
-          <div class="playbill-card">
+          <div class="playbill-card" data-category="nukkad fest">
             <div class="playbill-card-header">
               <span class="playbill-card-sno">09</span>
             </div>
@@ -483,6 +497,6 @@
   </button>
 
   <div class="notice" id="notice">DRACULA Events &amp; Showcases</div>
-  <script src="script.js"></script>
+  <script src="script.js?v=20261102g"></script>
 </body>
 </html>
