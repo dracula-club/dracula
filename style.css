@@ -1988,6 +1988,122 @@ img {
 }
 
 /* ========================================================
+   MEET OUR ALUMNI SUBSECTION
+   ======================================================== */
+.team-alumni-section {
+  margin-top: 64px;
+  padding-top: 56px;
+  border-top: 1px solid var(--drac-line-gold);
+}
+
+.alumni-lead-text {
+  font-size: 14.5px;
+  color: var(--drac-text-secondary);
+  max-width: 720px;
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+.alumni-category-block {
+  margin-bottom: 40px;
+}
+
+.alumni-category-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.alumni-category-tag {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--drac-text-secondary);
+  font-weight: 600;
+  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--drac-line);
+  border-radius: 20px;
+}
+
+.alumni-category-tag.former-sec-tag {
+  color: var(--drac-gold-bright);
+  background: rgba(197, 160, 89, 0.1);
+  border-color: var(--drac-line-gold);
+}
+
+.alumni-category-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--drac-line-gold), transparent);
+}
+
+.alumni-secretaries-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.alumni-badge-pill {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(15, 8, 12, 0.92);
+  border: 1px solid var(--drac-gold);
+  color: var(--drac-gold-bright);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.alumni-gold-eyebrow {
+  color: var(--drac-gold-bright) !important;
+}
+
+/* Individual Face Framing for Alumni */
+.alumni-img-shruti {
+  object-position: 50% 20% !important;
+}
+
+.alumni-img-aviral {
+  object-position: 50% 15% !important;
+}
+
+.alumni-img-harshit-sharma {
+  object-position: 50% 45% !important;
+}
+
+.alumni-img-harshit-pal {
+  object-position: 50% 15% !important;
+}
+
+.alumni-img-medhavi {
+  object-position: 50% 15% !important;
+}
+
+.alumni-img-saumya {
+  object-position: 50% 20% !important;
+}
+
+.alumni-img-honey {
+  object-position: 50% 60% !important;
+}
+
+/* ========================================================
    VISUAL CHRONICLE — PURE PHOTOGRAPHY THEATRE ARCHIVE
    Zero Fake Descriptions • Pure Imagery • Cinema Lightbox
    ======================================================== */
@@ -3635,6 +3751,16 @@ img {
   .team-ensemble-content {
     padding: 28px 20px;
   }
+  .alumni-secretaries-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+  .alumni-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
   .gallery-theatre-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -3865,6 +3991,10 @@ img {
   .team-section,
   .gallery-section,
   .milestones-section,
+  .team-alumni-section {
+    margin-top: 44px;
+    padding-top: 36px;
+  }
   .subpage-container,
   .page-hero {
     padding: 40px 18px;
@@ -3921,6 +4051,14 @@ img {
     justify-content: center;
   }
 
+  .alumni-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .alumni-lead-text {
+    font-size: 13.5px;
+    margin-bottom: 24px;
+  }
   /* Theatrical Footer 1-Column */
   .footer {
     padding: 40px 18px 20px;
@@ -4026,6 +4164,10 @@ img {
   }
   .meta-num {
     font-size: 20px;
+  }
+  .team-alumni-section {
+    margin-top: 44px;
+    padding-top: 36px;
   }
   .subpage-container,
   .page-hero {
