@@ -748,24 +748,24 @@ document.addEventListener('DOMContentLoaded', () => {
     'samaj': {
       title: 'Samaj (समाज)',
       category: 'Nukkad Natak • Street Theatre',
-      synopsis: 'A high-impact street theatre production confronting social apathy, discrimination, and hypocrisy with live dholak rhythms and powerful chorus chanting.',
-      director: 'Assistant Director: Anshit Giri',
+      synopsis: 'A powerful street theatre production highlighting the language divide in India, questioning linguistic discrimination and the barriers created by language. Through sharp satire, impactful dialogues, and a powerful chorus, the act delivers a message of unity in diversity.',
+      director: 'Writer: Prabuddha Singh | Directors: Prabuddha Singh & Anshit Giri',
       cast: 'DRACULA Street Play Ensemble',
       awards: '★ Flagship Campus Street Theatre Campaign'
     },
     'trp': {
       title: 'TRP Ka Circus',
-      category: 'Nukkad Natak • Street Theatre',
-      synopsis: 'An energetic street play satirizing sensational media frenzy, fabricated news circuses, and the hunger for television rating points.',
-      director: 'Live Percussion / Instrumentist: Anshit Giri',
+      category: 'Nukkad Natak • Street Play',
+      synopsis: 'A hard-hitting street theatre production exposing the reality of sensationalism, paid news, and the culture of TRP-driven media. Through satire, sharp dialogues, and powerful performances, the act questions the credibility of modern journalism and highlights the influence of बिकाऊ मीडिया.',
+      director: 'Writer: Aditya Singh | Directors: Aditya Singh & Prabuddha Singh',
       cast: 'DRACULA Street Natak Circle',
-      awards: '🏆 Finalist — IIT Roorkee'
+      awards: '🏆 Finalist at IIT Roorkee'
     },
     'girdhar': {
       title: 'Main Toh Girdhar Ki (मैं तो गिरधर की)',
       category: 'Stage Play • Classical Drama',
-      synopsis: 'A poetic proscenium drama exploring the fearless spiritual surrender, poetic rebellion, and devotion of Meerabai for Lord Krishna.',
-      director: 'DRACULA Stage Wing',
+      synopsis: 'A soulful theatrical portrayal of Meera Bai\'s unconditional love and unwavering devotion towards Lord Krishna. The play captures her spiritual journey, deep faith, and the power of divine love that transcends worldly boundaries.',
+      director: 'Writer: Honey Singh | Directors: Anshika Agarwal & Honey Singh',
       cast: 'Proscenium Cast Ensemble',
       awards: '★ Classical Stage Showcase'
     },
@@ -779,11 +779,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'alone': {
       title: 'Alone Spotlight',
-      category: 'Monoact • Solo Performance',
-      synopsis: 'An intimate solo dramatic journey portraying solitude, psychological resilience, and raw emotional truth under a single proscenium spotlight.',
+      category: 'Monoact • Solo Showcase',
+      synopsis: 'An annual monoact showcase featuring powerful solo performances by DRACULA artists. Each act brings a unique story, emotion, and perspective to the spotlight, celebrating the art of solo storytelling and individual expression.',
       director: 'DRACULA Solo Wing',
-      cast: 'Solo Dramatic Actor',
-      awards: '★ Monoact Showcase'
+      cast: 'Solo Dramatic Artists',
+      awards: '★ Annual Solo Showcase'
     },
     'mahabharat': {
       title: 'Mahabharat (महाभारत)',
