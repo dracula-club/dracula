@@ -725,25 +725,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let spotlightTimer = null;
     const SLIDE_DURATION = 4200;
 
-    const stillTitles = [
-      "The Proscenium Awakening & Courtroom Drama",
-      "High-Tension Dramatic Soliloquy & Expressions",
-      "The Climax Confrontation & Auditorium Spotlight",
-      "High-Energy Nukkad Natak Circle on Campus",
-      "Street Play Voice Chorus & Social Awakening",
-      "Proscenium Light Choreography & Divine Surrender",
-      "Satirical Verse & Live Street Play Monologues",
-      "Rhythmic Footwork & Crowd Encirclement",
-      "Theatrical Set Design & Character Depth",
-      "Live Street Play Percussion & Dholak Beats",
-      "Mythological Staging & Ancient Dialogue",
-      "Raw Campus Theatre Circle & Student Energy",
-      "Classical Devotion & Celestial Proscenium Glow",
-      "Festival Street Play Delegation & Satire",
-      "The Complete DRACULA Ensemble Curtain Call",
-      "Celebration of Theatrical Brotherhood & Legacy"
-    ];
-
     // Build filmstrip thumbnails
     if (spotlightFilmstripTrack) {
       spotlightFilmstripTrack.innerHTML = '';
@@ -768,6 +749,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function setSpotlightIndex(index, userTriggered = false) {
       spotlightIndex = (index + galleryPhotos.length) % galleryPhotos.length;
 
+      // Update ambient backdrop
+      const spotlightAmbientBlur = document.getElementById('spotlightAmbientBlur');
+      if (spotlightAmbientBlur) {
+        spotlightAmbientBlur.style.backgroundImage = `url("${galleryPhotos[spotlightIndex]}")`;
+      }
+
       // Update hero image with smooth crossfade
       spotlightHeroImg.style.opacity = '0.15';
       spotlightHeroImg.style.transform = 'scale(0.98)';
@@ -784,12 +771,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, 100);
 
-      // Update counter and title
+      // Update counter and authentic title & subtitle
       if (spotlightFrameCounter) {
         spotlightFrameCounter.textContent = `STILL ${String(spotlightIndex + 1).padStart(2, '0')} / ${String(galleryPhotos.length).padStart(2, '0')}`;
       }
       if (spotlightHudTitle) {
-        spotlightHudTitle.textContent = stillTitles[spotlightIndex] || `DRACULA Archival Photograph ${spotlightIndex + 1}`;
+        spotlightHudTitle.textContent = `Theatrical Visual Archive • Still ${String(spotlightIndex + 1).padStart(2, '0')} of ${String(galleryPhotos.length).padStart(2, '0')}`;
+      }
+      const spotlightHudSub = document.getElementById('spotlightHudSub');
+      if (spotlightHudSub) {
+        spotlightHudSub.textContent = 'Where Stories Come Alive • Pure Authentic Photography • SRMCEM';
       }
 
       // Update active thumbnail in filmstrip
