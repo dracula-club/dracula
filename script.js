@@ -677,7 +677,8 @@ document.addEventListener('DOMContentLoaded', () => {
       thumbs.forEach((t, i) => {
         if (i === currentPhotoIndex) {
           t.classList.add('active');
-          t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          const targetLeft = t.offsetLeft - (lightboxThumbnails.clientWidth / 2) + (t.clientWidth / 2);
+          lightboxThumbnails.scrollTo({ left: targetLeft, behavior: 'smooth' });
         } else {
           t.classList.remove('active');
         }
@@ -865,7 +866,8 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbs.forEach((t, i) => {
           if (i === spotlightIndex) {
             t.classList.add('active');
-            t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            const targetLeft = t.offsetLeft - (spotlightFilmstripTrack.clientWidth / 2) + (t.clientWidth / 2);
+            spotlightFilmstripTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
           } else {
             t.classList.remove('active');
           }

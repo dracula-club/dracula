@@ -2152,7 +2152,7 @@ img {
 .spotlight-hero-frame {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 520px;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--drac-line);
@@ -2194,7 +2194,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: center center !important;
   transition: opacity 0.35s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   filter: contrast(1.05) brightness(0.96);
   display: block;
@@ -2612,7 +2612,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center center;
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
   filter: contrast(1.04) brightness(0.96);
 }
@@ -5496,7 +5496,7 @@ img {
     margin: 18px 0 24px;
   }
   .spotlight-hero-frame {
-    height: 340px;
+    height: 360px;
   }
   .spotlight-cinema-screen {
     padding: 0;
@@ -5545,7 +5545,7 @@ img {
     padding: 10px;
   }
   .spotlight-hero-frame {
-    height: 260px;
+    height: 280px;
   }
   .spotlight-cinema-screen {
     padding: 0;
