@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DRACULA &mdash; Dramatic &amp; Cultural Association | SRMCEM</title>
   <meta name="description" content="DRACULA is the official Dramatic and Cultural Association of SRMCEM Lucknow. Established in 2003, presenting stage plays, nukkad natak, monoacts, and cultural expressions. 5x Abhivyakti Champions.">
-  <link rel="stylesheet" href="style.css?v=20261102d">
+  <link rel="stylesheet" href="style.css?v=20261102e">
   <link rel="icon" type="image/png" href="images/logo/dracula-logo.png">
 </head>
 <body>
@@ -406,18 +406,133 @@
             </article>
           </div>
 
-          <!-- TEAM EXPLORE BANNER: DIRECT ACCESS TO ALUMNI & FULL ENSEMBLE -->
-          <div class="team-explore-banner theatre-reveal">
-            <div class="team-explore-content">
-              <span class="eyebrow">&#10022; DRACULA HERITAGE &bull; 7 DECORATED ALUMNI &bull; COMPLETE ENSEMBLE</span>
-              <h3>Meet Our Former Secretaries, Alumni &amp; Creative Force</h3>
-              <p>
-                Discover former secretaries Shruti Saumya and Aviral Jaiswal, our decorated alumni cohort across batches, and the tireless ensemble of actors, musicians, lighting technicians, sound coordinators, and scriptwriters.
-              </p>
+                    <!-- ALUMNI SPOTLIGHT: CRIMSON RED PREVIEW WITH HORIZONTAL SIDE-SCROLL -->
+          <div class="alumni-preview-section theatre-reveal" id="alumniPreview">
+            <div class="alumni-preview-header">
+              <div>
+                <span class="alumni-red-badge">&#10022; DRACULA HERITAGE &bull; THE TORCHBEARERS</span>
+                <h3 class="alumni-preview-title">
+                  MEET OUR <span class="shine-crimson">ALUMNI &amp; FORMER SECRETARIES</span>
+                </h3>
+                <p class="alumni-preview-lead">
+                  Honoring the stalwarts, former secretaries, and performers who shaped our proscenium craft. Swipe or scroll horizontally to preview our recent alumni cohort.
+                </p>
+              </div>
+              <div class="alumni-scroll-nav-btns" aria-label="Scroll alumni">
+                <button class="alumni-scroll-arrow" id="alumniScrollPrev" title="Previous Alumni" aria-label="Previous Alumni">&lsaquo;</button>
+                <button class="alumni-scroll-arrow" id="alumniScrollNext" title="Next Alumni" aria-label="Next Alumni">&rsaquo;</button>
+              </div>
             </div>
-            <div class="team-explore-actions">
-              <a class="btn primary" href="team.html">
-                Explore Full Team, Alumni &amp; Ensemble &rarr;
+
+            <!-- HORIZONTAL SNAP-SCROLL TRACK -->
+            <div class="alumni-scroll-track" id="alumniScrollTrack">
+              <!-- 01. Shruti Saumya (Former Secretary 2023-24) -->
+              <a class="alumni-scroll-card sec-card" href="team.html#alumni" title="Shruti Saumya &mdash; Ex-Secretary (2023&ndash;24)">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/SHRUTI.jpg" alt="Shruti Saumya" class="alumni-img-shruti" loading="lazy">
+                  <span class="alumni-scroll-badge gold-badge">&#9733; Ex-Sec (23&ndash;24)</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Shruti Saumya</div>
+                  <div class="alumni-scroll-dept">IT &bull; Batch 2020&ndash;24</div>
+                  <div class="alumni-scroll-batch">Ex-Secretary (2023&ndash;24)</div>
+                </div>
+              </a>
+
+              <!-- 02. Aviral Jaiswal (Former Secretary 2024-25) -->
+              <a class="alumni-scroll-card sec-card" href="team.html#alumni" title="Aviral Jaiswal &mdash; Ex-Secretary (2024&ndash;25)">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/AVIRAL.jpg" alt="Aviral Jaiswal" class="alumni-img-aviral" loading="lazy">
+                  <span class="alumni-scroll-badge gold-badge">&#9733; Ex-Sec (24&ndash;25)</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Aviral Jaiswal</div>
+                  <div class="alumni-scroll-dept">CSE &bull; Batch 2021&ndash;25</div>
+                  <div class="alumni-scroll-batch">Ex-Secretary (2024&ndash;25)</div>
+                </div>
+              </a>
+
+              <!-- 03. Harshit Sharma -->
+              <a class="alumni-scroll-card" href="team.html#alumni" title="Harshit Sharma &mdash; Alumnus">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/HARSHIT-SHARMA.jpg" alt="Harshit Sharma" class="alumni-img-harshit-sharma" loading="lazy">
+                  <span class="alumni-scroll-badge">Alumnus</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Harshit Sharma</div>
+                  <div class="alumni-scroll-dept">IT &bull; Batch 2022&ndash;26</div>
+                  <div class="alumni-scroll-batch">Dramatic Ensemble</div>
+                </div>
+              </a>
+
+              <!-- 04. Harshit Pal -->
+              <a class="alumni-scroll-card" href="team.html#alumni" title="Harshit Pal &mdash; Alumnus">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/HARSHIT-PAL.jpg" alt="Harshit Pal" class="alumni-img-harshit-pal" loading="lazy">
+                  <span class="alumni-scroll-badge">Alumnus</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Harshit Pal</div>
+                  <div class="alumni-scroll-dept">CSE &bull; Batch 2022&ndash;26</div>
+                  <div class="alumni-scroll-batch">Stagecraft &amp; Acting</div>
+                </div>
+              </a>
+
+              <!-- 05. Medhavi Bajpai -->
+              <a class="alumni-scroll-card" href="team.html#alumni" title="Medhavi Bajpai &mdash; Alumna">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/MEDHAVI.jpg" alt="Medhavi Bajpai" class="alumni-img-medhavi" loading="lazy">
+                  <span class="alumni-scroll-badge">Alumna</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Medhavi Bajpai</div>
+                  <div class="alumni-scroll-dept">AI/ML &bull; Batch 2022&ndash;26</div>
+                  <div class="alumni-scroll-batch">Street &amp; Proscenium</div>
+                </div>
+              </a>
+
+              <!-- 06. Saumya -->
+              <a class="alumni-scroll-card" href="team.html#alumni" title="Saumya &mdash; Alumna">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/SAUMYA.jpg" alt="Saumya" class="alumni-img-saumya" loading="lazy">
+                  <span class="alumni-scroll-badge">Alumna</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Saumya</div>
+                  <div class="alumni-scroll-dept">DS &bull; Batch 2022&ndash;26</div>
+                  <div class="alumni-scroll-batch">Theatre Ensemble</div>
+                </div>
+              </a>
+
+              <!-- 07. Honey Singh -->
+              <a class="alumni-scroll-card" href="team.html#alumni" title="Honey Singh &mdash; Alumna">
+                <div class="alumni-scroll-img-wrap">
+                  <img src="images/team/HONEY.jpg" alt="Honey Singh" class="alumni-img-honey" loading="lazy">
+                  <span class="alumni-scroll-badge">Alumna</span>
+                </div>
+                <div class="alumni-scroll-info">
+                  <div class="alumni-scroll-name">Honey Singh</div>
+                  <div class="alumni-scroll-dept">BBA &bull; Batch 2023&ndash;26</div>
+                  <div class="alumni-scroll-batch">Direction &amp; Coordination</div>
+                </div>
+              </a>
+
+              <!-- 08. Explore All Final Card -->
+              <a class="alumni-scroll-more-card" href="team.html#alumni" title="Explore Full Team &amp; Complete Ensemble">
+                <div class="alumni-scroll-more-icon">&#127917;</div>
+                <strong>Full Ensemble &amp; Crew</strong>
+                <span>View all alumni bios, past leaders &amp; complete stage force &rarr;</span>
+              </a>
+            </div>
+
+            <!-- FOOTER WITH NOTE & RED CTA BUTTON -->
+            <div class="alumni-preview-footer">
+              <div class="alumni-preview-footer-note">
+                <span>&#128073;</span>
+                <span><strong>Side-scroll or swipe</strong> to see alumni &bull; Click any card for full credentials &amp; legacy.</span>
+              </div>
+              <a class="btn primary btn-crimson-solid" href="team.html#alumni">
+                Explore Full Profiles &amp; Complete Ensemble &rarr;
               </a>
             </div>
           </div>

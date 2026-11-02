@@ -1259,5 +1259,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // 17. ALUMNI HORIZONTAL SIDE-SCROLL ARROW NAVIGATION
+  const alumniTrack = document.getElementById('alumniScrollTrack');
+  const alumniPrev = document.getElementById('alumniScrollPrev');
+  const alumniNext = document.getElementById('alumniScrollNext');
+  if (alumniTrack && alumniPrev && alumniNext) {
+    alumniPrev.addEventListener('click', () => {
+      alumniTrack.scrollBy({ left: -220, behavior: 'smooth' });
+    });
+    alumniNext.addEventListener('click', () => {
+      alumniTrack.scrollBy({ left: 220, behavior: 'smooth' });
+    });
+  }
+
   initNumberCounters();
 });
