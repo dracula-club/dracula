@@ -242,7 +242,8 @@ img {
               visibility 0.85s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.intro-overlay.hidden {
+.intro-overlay.hidden,
+html.dracula-skip-intro .intro-overlay {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -2583,6 +2584,8 @@ img {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 18px;
   margin-top: 24px;
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
 }
 
 .gallery-theatre-card {
@@ -5656,4 +5659,30 @@ img {
     font-size: 10px;
     padding: 7px 12px;
   }
+}
+
+/* ========================================================
+   INTRO CURTAIN BGM BADGE
+   ======================================================== */
+.intro-bgm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 8, 12, 0.7);
+  border: 1px solid rgba(229, 185, 105, 0.35);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  color: var(--drac-gold-bright);
+  text-transform: uppercase;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  animation: pulseBgmGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseBgmGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(229, 185, 105, 0.15); border-color: rgba(229, 185, 105, 0.35); }
+  50% { box-shadow: 0 0 20px rgba(217, 31, 43, 0.35); border-color: var(--drac-gold); }
 }

@@ -30,7 +30,20 @@
   <meta name="twitter:description" content="Official Dramatic and Cultural Association of SRMCEM Lucknow. Established in 2003, presenting stage plays, nukkad natak, and cultural expressions. 5x Abhivyakti Champions.">
   <meta name="twitter:image" content="https://draculaclub.sbs/images/logo/dracula-logo.png">
 
+  <!-- Preconnect to Google Fonts for Ultra-Fast Theatrical Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
   <link rel="stylesheet" href="style.css?v=20261103a">
+  <script>
+    // Fast-path: Skip curtain overlay immediately if already seen in this session
+    try {
+      if (sessionStorage.getItem('dracula_intro_seen')) {
+        document.documentElement.classList.add('dracula-skip-intro');
+      }
+    } catch(e) {}
+  </script>
 </head>
 <body>
 
@@ -60,6 +73,10 @@
         <div class="intro-presents">&bull; SRMCEM &bull; DRAMATIC AND CULTURAL ASSOCIATION PRESENTS &bull;</div>
         <h1 class="intro-title">DR<span class="intro-blood-a">A</span>CULA</h1>
         <p class="intro-tagline">&ldquo;WHERE STORIES <span class="shine-gold">COME ALIVE</span>&rdquo;</p>
+        <div class="intro-bgm-badge">
+          <span>&#9835;</span>
+          <span>DRACULA &bull; Theatrical Signature Score</span>
+        </div>
         <div class="intro-act-text" id="trailerActText">A LEGACY OF EXPRESSION SINCE 2003...</div>
 
         <div class="intro-controls-row">
@@ -213,7 +230,7 @@
             <div class="royal-stageportal-card tilt-card">
               <div class="card-glare"></div>
               <div class="stageportal-img-wrap">
-                <img src="images/hero/grand-theatre.jpg" alt="DRACULA Proscenium Stage at SRMCEM" class="stageportal-img">
+                <img src="images/hero/grand-theatre.jpg" alt="DRACULA Proscenium Stage at SRMCEM" class="stageportal-img" loading="lazy" decoding="async">
                 <div class="stageportal-vignette"></div>
                 <div class="stageportal-badge">
                   <span class="live-dot"></span> 20+ YEARS ON STAGE
@@ -303,7 +320,7 @@
             <!-- 01. Flagship Spotlight: Yamraj Ki Adalat -->
             <article class="featured-prod-hero" data-prod="yamraj">
               <div class="featured-prod-img-wrap">
-                <img src="images/productions/yamraj-ki-adalat.jpg" alt="Yamraj Ki Adalat Stage Play Climax">
+                <img src="images/productions/yamraj-ki-adalat.jpg" alt="Yamraj Ki Adalat Stage Play Climax" loading="lazy" decoding="async">
               </div>
               <div class="featured-prod-content">
                 <span class="prod-tag">Stage Play &bull; Proscenium Production</span>
@@ -327,7 +344,7 @@
               <!-- Samaj (&#2360;&#2350;&#2366;&#2332;) -->
               <article class="prod-card" data-prod="samaj">
                 <div class="prod-card-img-wrap">
-                  <img src="images/productions/samaj.jpg" alt="Samaj Nukkad Natak Street Play">
+                  <img src="images/productions/samaj.jpg" alt="Samaj Nukkad Natak Street Play" loading="lazy" decoding="async">
                 </div>
                 <div class="prod-card-body">
                   <div>
@@ -347,7 +364,7 @@
               <!-- Main Toh Girdhar Ki -->
               <article class="prod-card" data-prod="girdhar">
                 <div class="prod-card-img-wrap">
-                  <img src="images/productions/girdhar.jpg" alt="Main Toh Girdhar Ki Stage Play">
+                  <img src="images/productions/girdhar.jpg" alt="Main Toh Girdhar Ki Stage Play" loading="lazy" decoding="async">
                 </div>
                 <div class="prod-card-body">
                   <div>
@@ -392,7 +409,7 @@
             <!-- 01. Prabuddha Singh -->
             <article class="team-person-card">
               <div class="team-person-img-wrap">
-                <img src="images/team/prabuddha.jpg" alt="Prabuddha Singh &mdash; Club Secretary" class="person-img-prabuddha">
+                <img src="images/team/prabuddha.jpg" alt="Prabuddha Singh &mdash; Club Secretary" class="person-img-prabuddha" loading="lazy" decoding="async">
               </div>
               <div class="team-person-details">
                 <div>
@@ -412,7 +429,7 @@
             <!-- 02. Sankalp Shrivastava -->
             <article class="team-person-card">
               <div class="team-person-img-wrap">
-                <img src="images/team/member-2.jpg" alt="Sankalp Shrivastava &mdash; Vice Secretary" class="person-img-sankalp">
+                <img src="images/team/member-2.jpg" alt="Sankalp Shrivastava &mdash; Vice Secretary" class="person-img-sankalp" loading="lazy" decoding="async">
               </div>
               <div class="team-person-details">
                 <div>
@@ -574,22 +591,22 @@
 
           <div class="gallery-theatre-grid" style="grid-template-columns:repeat(auto-fit, minmax(min(100%, 250px), 1fr));">
             <div class="gallery-theatre-card" data-gallery-index="0" title="Click to view full photo">
-              <img src="images/gallery/photo-01.jpg" alt="DRACULA Stage Performance">
+              <img src="images/gallery/photo-01.jpg" alt="DRACULA Stage Performance" loading="lazy" decoding="async">
               <div class="gallery-card-hover-cue"><span class="cue-pill">&#128269; VIEW STILL</span></div>
             </div>
 
             <div class="gallery-theatre-card" data-gallery-index="1" title="Click to view full photo">
-              <img src="images/gallery/photo-02.jpg" alt="DRACULA Theatrical Dialogue">
+              <img src="images/gallery/photo-02.jpg" alt="DRACULA Theatrical Dialogue" loading="lazy" decoding="async">
               <div class="gallery-card-hover-cue"><span class="cue-pill">&#128269; VIEW STILL</span></div>
             </div>
 
             <div class="gallery-theatre-card" data-gallery-index="2" title="Click to view full photo">
-              <img src="images/gallery/photo-03.jpg" alt="DRACULA Proscenium Stage">
+              <img src="images/gallery/photo-03.jpg" alt="DRACULA Proscenium Stage" loading="lazy" decoding="async">
               <div class="gallery-card-hover-cue"><span class="cue-pill">&#128269; VIEW STILL</span></div>
             </div>
 
             <div class="gallery-theatre-card" data-gallery-index="3" title="Click to view full photo">
-              <img src="images/gallery/photo-04.jpg" alt="DRACULA Performance Ensemble">
+              <img src="images/gallery/photo-04.jpg" alt="DRACULA Performance Ensemble" loading="lazy" decoding="async">
               <div class="gallery-card-hover-cue"><span class="cue-pill">&#128269; VIEW STILL</span></div>
             </div>
           </div>

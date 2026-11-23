@@ -187,10 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ----------------------------------------------------
   // 2. THEATRICAL GOLDEN EMBERS & STAGE DUST PARTICLE ENGINE
+  // (Optimized: Auto-pauses loop when curtain is hidden to save CPU/GPU)
   // ----------------------------------------------------
   const canvas = document.getElementById('trailerEmberCanvas') || document.getElementById('trailerBatsCanvas');
   let embers = [];
   let emberAnimFrame = null;
+  let isEmbersRunning = false;
+  let emberCtx = null;
 
   class EmberParticle {
     constructor(w, h) {
@@ -235,37 +238,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function renderEmbers() {
+    if (!isEmbersRunning || !emberCtx || !canvas) return;
+    emberCtx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < embers.length; i++) {
+      embers[i].update();
+      embers[i].draw(emberCtx);
+    }
+    emberAnimFrame = requestAnimationFrame(renderEmbers);
+  }
+
+  function startEmbers() {
+    if (isEmbersRunning || !canvas) return;
+    isEmbersRunning = true;
+    if (emberAnimFrame) cancelAnimationFrame(emberAnimFrame);
+    emberAnimFrame = requestAnimationFrame(renderEmbers);
+  }
+
+  function stopEmbers() {
+    isEmbersRunning = false;
+    if (emberAnimFrame) {
+      cancelAnimationFrame(emberAnimFrame);
+      emberAnimFrame = null;
+    }
+    if (emberCtx && canvas) {
+      emberCtx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
   function initEmbers() {
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    emberCtx = canvas.getContext('2d');
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
     embers = [];
-    const count = window.innerWidth < 768 ? 32 : 65;
+    const count = window.innerWidth < 768 ? 24 : 45;
     for (let i = 0; i < count; i++) {
       embers.push(new EmberParticle(canvas.width, canvas.height));
     }
-
-    function render() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      embers.forEach(e => {
-        e.update();
-        e.draw(ctx);
-      });
-      emberAnimFrame = requestAnimationFrame(render);
-    }
-    render();
   }
 
   initEmbers();
 
   // ----------------------------------------------------
-  // 3. CINEMATIC THEATRE TEASER SEQUENCER
+  // 3. CINEMATIC THEATRE TEASER SEQUENCER & MAHABHARAT BGM
   // ----------------------------------------------------
   const introOverlay = document.getElementById('introOverlay');
   const enterBtn = document.getElementById('enterTheatreBtn');
@@ -274,12 +295,68 @@ document.addEventListener('DOMContentLoaded', () => {
   const soundToggleBtn = document.getElementById('soundToggleBtn');
   const trailerActText = document.getElementById('trailerActText');
 
+  // ========================================================
+  // 3. DRACULA SIGNATURE THEATRICAL SOUNDTRACK (CINEMATIC BGM)
+  // Single, unified, seamlessly looping Indian theatrical composition
+  // Organically blends: Soft Dholak, Djembe, Gentle Claps, 
+  // Cinematic Low Drums, Atmospheric Strings & Deep Drone
+  // ========================================================
+  let draculaBgm = null;
+  const BGM_PATH = 'audio/dracula_theatrical_theme.mp3';
+  const BGM_TARGET_VOLUME = 0.02; // Exactly 2% volume — pristine, soothing, whisper-soft theatrical bed
+
+  function initTheatricalBgm() {
+    if (!draculaBgm) {
+      draculaBgm = new Audio(BGM_PATH);
+      draculaBgm.loop = true;
+      draculaBgm.preload = 'none'; // High-performance: do not block bandwidth on initial page paint
+      draculaBgm.volume = BGM_TARGET_VOLUME;
+    }
+  }
+
+  function playTheatricalBgm() {
+    if (!isSoundEnabled) return;
+    initTheatricalBgm();
+    if (draculaBgm) {
+      if (draculaBgm.paused) {
+        draculaBgm.volume = 0.003;
+        draculaBgm.play().then(() => {
+          // Gentle smooth fade-in to exactly 2% volume
+          let v = 0.003;
+          const fadeTimer = setInterval(() => {
+            v = Math.min(BGM_TARGET_VOLUME, v + 0.003);
+            if (draculaBgm) draculaBgm.volume = v;
+            if (v >= BGM_TARGET_VOLUME) clearInterval(fadeTimer);
+          }, 100);
+        }).catch(() => {});
+      }
+    }
+  }
+
+  function pauseTheatricalBgm() {
+    if (draculaBgm && !draculaBgm.paused) {
+      let v = draculaBgm.volume;
+      const fadeOut = setInterval(() => {
+        v -= 0.004;
+        if (v <= 0.002) {
+          clearInterval(fadeOut);
+          if (draculaBgm) {
+            draculaBgm.pause();
+            draculaBgm.volume = BGM_TARGET_VOLUME;
+          }
+        } else if (draculaBgm) {
+          draculaBgm.volume = v;
+        }
+      }, 50);
+    }
+  }
+
   const trailerScenes = [
-    { text: 'WHEN THE PROSCENIUM LIGHTS DIM... TRUTH SPEAKS.', fx: 'gong' },
-    { text: '20+ YEARS OF RAW STAGE REBELLION & ARTISTIC DISCIPLINE', fx: 'hit' },
-    { text: 'NUKKAD NATAK • PROSCENIUM PLAYS • MONOACTS • LIVE DHOLAK', fx: 'hit' },
-    { text: '5× ABHIVYAKTI CHAMPIONS — UNDISPUTED DRAMATIC FORCE', fx: 'gong' },
-    { text: 'WHERE STORIES COME ALIVE — WELCOME TO DRACULA', fx: 'hit' }
+    { text: 'WHEN THE PROSCENIUM LIGHTS DIM... TRUTH SPEAKS.' },
+    { text: '20+ YEARS OF RAW STAGE REBELLION & ARTISTIC DISCIPLINE' },
+    { text: 'NUKKAD NATAK • PROSCENIUM PLAYS • MONOACTS • LIVE DHOLAK' },
+    { text: '5× ABHIVYAKTI CHAMPIONS — UNDISPUTED DRAMATIC FORCE' },
+    { text: 'WHERE STORIES COME ALIVE — WELCOME TO DRACULA' }
   ];
 
   let sceneIdx = 0;
@@ -298,12 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
       trailerActText.textContent = scene.text;
       trailerActText.style.opacity = '1';
       trailerActText.style.transform = 'translateY(0)';
-
-      if (scene.fx === 'hit') {
-        playNagadaHit();
-      } else if (scene.fx === 'gong') {
-        playStageGong();
-      }
     }, 250);
   }
 
@@ -314,17 +385,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (trailerTimer) clearInterval(trailerTimer);
 
-    setTimeout(() => {
-      initAudio();
-      playStageGong();
-    }, 350);
+    initAudio();
+    if (isSoundEnabled) {
+      playTheatricalBgm();
+    }
 
     trailerTimer = setInterval(advanceTrailerScene, 2600);
   }
 
-  // Audio trigger on user first touch/click
-  window.addEventListener('click', () => initAudio(), { once: true });
-  window.addEventListener('keydown', () => initAudio(), { once: true });
+  // Respect browser autoplay policies: start upon user's first gesture
+  function handleFirstUserGesture() {
+    initAudio();
+    if (isSoundEnabled) {
+      playTheatricalBgm();
+    }
+  }
+  window.addEventListener('click', handleFirstUserGesture, { once: true });
+  window.addEventListener('touchstart', handleFirstUserGesture, { once: true });
+  window.addEventListener('keydown', handleFirstUserGesture, { once: true });
 
   const navSoundBtn = document.getElementById('navSoundBtn');
 
@@ -347,7 +425,9 @@ document.addEventListener('DOMContentLoaded', () => {
     isSoundEnabled = !isSoundEnabled;
     updateSoundUI();
     if (isSoundEnabled) {
-      playNagadaHit();
+      playTheatricalBgm();
+    } else {
+      pauseTheatricalBgm();
     }
   }
 
@@ -367,10 +447,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function triggerCurtainReveal() {
     if (!introOverlay) return;
+    try {
+      sessionStorage.setItem('dracula_intro_seen', 'true');
+    } catch (e) {}
     initAudio();
     if (isSoundEnabled) {
-      playCurtainWhoosh();
-      playNagadaHit();
+      playTheatricalBgm();
     }
     introOverlay.classList.add('revealing');
     if (trailerTimer) {
@@ -381,14 +463,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       introOverlay.classList.add('hidden');
       introOverlay.style.display = 'none';
+      stopEmbers(); // Pause golden embers canvas to save CPU/GPU cycles
     }, 1350);
   }
 
   function replayTrailer() {
     if (!introOverlay) return;
+    document.documentElement.classList.remove('dracula-skip-intro');
     introOverlay.style.display = 'flex';
     introOverlay.classList.remove('hidden');
     introOverlay.classList.remove('revealing');
+    if (draculaBgm) {
+      draculaBgm.volume = BGM_TARGET_VOLUME;
+    }
+    startEmbers();
     startTrailerEngine();
   }
 
@@ -399,8 +487,18 @@ document.addEventListener('DOMContentLoaded', () => {
     replayTrailer();
   }));
 
-  // Auto-start trailer on index.html so the very first interface is the grand cinematic intro teaser!
-  if (introOverlay && !introOverlay.classList.contains('hidden') && introOverlay.style.display !== 'none') {
+  // Smart session-based intro: First visit in session gets the grand curtain teaser.
+  // Returning visits or reloads open the theatre immediately (0ms delay)!
+  const hasSeenIntro = (function() {
+    try { return sessionStorage.getItem('dracula_intro_seen'); } catch (e) { return null; }
+  })();
+
+  if (hasSeenIntro && introOverlay) {
+    introOverlay.classList.add('hidden');
+    introOverlay.style.display = 'none';
+    stopEmbers();
+  } else if (introOverlay && !introOverlay.classList.contains('hidden') && introOverlay.style.display !== 'none') {
+    startEmbers();
     startTrailerEngine();
   }
 
@@ -1425,7 +1523,10 @@ document.addEventListener('DOMContentLoaded', () => {
       context.restore();
     }
 
+    let isHeroVisible = true;
+
     function render() {
+      if (!isHeroVisible) return;
       time += 16;
       ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
@@ -1445,6 +1546,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       heroAnimFrame = requestAnimationFrame(render);
+    }
+
+    // Performance Optimization: Auto-pause stage atmosphere loop when off-screen
+    if ('IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!isHeroVisible) {
+              isHeroVisible = true;
+              if (heroAnimFrame) cancelAnimationFrame(heroAnimFrame);
+              heroAnimFrame = requestAnimationFrame(render);
+            }
+          } else {
+            isHeroVisible = false;
+            if (heroAnimFrame) {
+              cancelAnimationFrame(heroAnimFrame);
+              heroAnimFrame = null;
+            }
+          }
+        });
+      }, { threshold: 0.05 });
+      heroObserver.observe(heroCanvas);
     }
 
     render();
