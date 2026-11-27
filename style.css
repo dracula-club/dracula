@@ -123,6 +123,27 @@ img {
   margin: 0 auto;
   position: relative;
   min-height: 100vh;
+  transition: transform 1.35s cubic-bezier(0.16, 1, 0.3, 1), filter 1.35s ease, opacity 1.1s ease;
+}
+
+.site-wrapper.stage-entering {
+  animation: dtSiteReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dtSiteReveal {
+  0% {
+    transform: scale(0.965);
+    filter: blur(8px) brightness(0.6);
+    opacity: 0.2;
+  }
+  50% {
+    filter: blur(3px) brightness(1.15);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px) brightness(1);
+    opacity: 1;
+  }
 }
 
 /* Typography Helpers */

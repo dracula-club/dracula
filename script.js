@@ -1,4 +1,4 @@
-/* ========================================================
+﻿/* ========================================================
    DRACULA — Dramatic & Cultural Association (SRMCEM)
    THEATRICAL WEB ENGINE & INTERACTIONS
    Aesthetics: Classical Proscenium Theatre • Pure Photography
@@ -396,13 +396,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Respect browser autoplay policies: start upon user's first gesture
   function handleFirstUserGesture() {
     initAudio();
-    if (isSoundEnabled) {
+    // Do not auto-play background BGM if custom teaser (#dt) is currently visible/active on page
+    const dtEl = document.getElementById('dt');
+    const isDtActive = dtEl && dtEl.style.display !== 'none' && !dtEl.classList.contains('out');
+    if (!isDtActive && isSoundEnabled) {
       playTheatricalBgm();
     }
   }
   window.addEventListener('click', handleFirstUserGesture, { once: true });
   window.addEventListener('touchstart', handleFirstUserGesture, { once: true });
   window.addEventListener('keydown', handleFirstUserGesture, { once: true });
+
+  // When custom teaser finishes or user enters theatre, start ambient theatrical score smoothly
+  window.addEventListener('dracula:teaser-done', () => {
+    if (isSoundEnabled) {
+      playTheatricalBgm();
+    }
+  });
 
   const navSoundBtn = document.getElementById('navSoundBtn');
 
@@ -482,9 +492,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (enterBtn) enterBtn.addEventListener('click', triggerCurtainReveal);
   if (skipBtn) skipBtn.addEventListener('click', triggerCurtainReveal);
+    // Universal Global Replay Listener for Teaser Trailer
+  document.addEventListener('click', function(e) {
+    var replayBtn = e.target.closest('[data-replay-teaser], .replay-intro-btn, a[title="Replay Trailer"], #replayTeaser');
+    if (!replayBtn) return;
+    e.preventDefault();
+    if (typeof pauseTheatricalBgm === 'function') pauseTheatricalBgm();
+    if (typeof window.playDraculaTeaser === 'function') {
+      window.playDraculaTeaser(true);
+    } else {
+      window.location.href = 'index.html?replay=1';
+    }
+  });
   replayBtns.forEach(btn => btn.addEventListener('click', (e) => {
     e.preventDefault();
-    replayTrailer();
+    pauseTheatricalBgm();
+    if (window.playDraculaTeaser) {
+      window.playDraculaTeaser(true);
+    } else if (typeof replayTrailer === 'function') {
+      replayTrailer();
+    }
   }));
 
   // Smart session-based intro: First visit in session gets the grand curtain teaser.
